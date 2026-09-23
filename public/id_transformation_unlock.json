@@ -1,0 +1,49 @@
+{
+    "unlock": [
+        {
+            "id": "xmegacities",
+            "unlock_level": 1
+        },
+        {
+            "id": "connect_xmegacities_to_main_settlement",
+            "unlock_level": 1
+        },
+        {
+            "id": "xdeep_water_tiles",
+            "unlock_level": 1
+        },
+        {
+            "id": "forest_income_x",
+            "unlock_level": 1
+        },
+        {
+            "id": "ypercent_of_road_at_level_x",
+            "unlock_level": 89
+        },
+        {
+            "id": "xtowns_of_level_y",
+            "unlock_level": 1
+        },
+        {
+            "id": "more_x_of_types",
+            "types": [
+                {
+                    "id": "filter_array_1",
+                    "unlock_level": 91
+                },
+                {
+                    "id": "foundry_eco",
+                    "unlock_level": 95
+                },
+                {
+                    "id": "golden_mine_4",
+                    "unlock_level": 100
+                },
+                {
+                    "id": "uranium_plant",
+                    "unlock_level": 97
+                }
+            ]
+        }
+    ]
+}

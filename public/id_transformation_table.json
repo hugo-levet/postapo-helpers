@@ -1,0 +1,77 @@
+{
+    "transformation": [
+        {
+            "planner_id": "n+=O",
+            "id": "xtowns_of_level_y",
+            "todo_string": "<count>city lvl<level>"
+        },
+        {
+            "planner_id": "n+=k",
+            "id": "ypercent_of_road_at_level_x",
+            "todo_string": "<level>% road lvl<count>"
+        },
+        {
+            "planner_id": "n+=A",
+            "id": "connect_xmegacities_to_main_settlement",
+            "todo_string": "<count>Mega connect"
+        },
+        {
+            "planner_id": "n+=F",
+            "id": "xdeep_water_tiles",
+            "todo_string": "<count> deep-water"
+        },
+        {
+            "planner_id": "n+=M",
+            "id": "forest_income_x",
+            "todo_string": "<count> forest income"
+        },
+        {
+            "planner_id": "n+=oa",
+            "id": "xmegacities",
+            "todo_string": "<count>Mega"
+        },
+        {
+            "planner_id": "n+=N",
+            "id": "xmegacities_of_level_y",
+            "todo_string": "<count>Mega lvl<level>"
+        },
+        {
+            "id": "more_x_of_types",
+            "todo_string": "><count> <type>"
+        },
+        {
+            "id": "less_x_of_types",
+            "todo_string": "<<count> <type>"
+        },
+        {
+            "planner_id": "n+=E",
+            "id": "restore_xtiles",
+            "todo_string": "restore <count>"
+        },
+        {
+            "planner_id": "n+=j",
+            "id": "xwater_tiles",
+            "todo_string": "<count> water"
+        },
+        {
+            "planner_id": "n+=R",
+            "id": "place_xpavement_tiles",
+            "todo_string": "<count> pavement"
+        },
+        {
+            "planner_id": "n+=pa",
+            "id": "have_x_passenger_trains",
+            "todo_string": "<count> passenger trains"
+        },
+        {
+            "planner_id": "n+=fa",
+            "id": "use_x_bombs",
+            "todo_string": "<count> bombs"
+        },
+        {
+            "planner_id": "n+=ua",
+            "id": "create_x_water_tiles",
+            "todo_string": "create <count> water"
+        }
+    ]
+}

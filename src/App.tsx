@@ -7,6 +7,8 @@ import Home from './pages/Home'
 import ResourcesExcessCalculator from './pages/ResourcesExcessCalculator'
 import FoodAdsExcess from './pages/FoodAdsExcess'
 import TreeComparator from './pages/TreeComparator'
+import RequirementsDisplay from './pages/RequirementsDisplay'
+import TodoMegaLvl from './pages/TodoMegaLvl'
 import './App.css'
 
 function useHashRoute() {
@@ -37,6 +39,14 @@ const PAGES: Record<string, { title: string; subtitle?: string; icon?: string }>
     title: 'Tree comparator',
     subtitle: 'payback time per tier and per upgrade',
     icon: treeIcon,
+  },
+  '/RequirementsDisplay': {
+    title: 'Upgrade requirements',
+    subtitle: 'All conditions to improve levels',
+  },
+  '/TodoMegaLvl': {
+    title: 'Todo Mega Levels',
+    subtitle: 'Track requirements and generate tasks',
   },
 }
 
@@ -69,6 +79,10 @@ function App() {
           <FoodAdsExcess />
         ) : route === '/TreeComparator' ? (
           <TreeComparator />
+        ) : route === '/RequirementsDisplay' ? (
+          <RequirementsDisplay />
+        ) : route === '/TodoMegaLvl' ? (
+          <TodoMegaLvl />
         ) : (
           <Home />
         )}

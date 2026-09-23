@@ -1,0 +1,3502 @@
+{
+    "data": [
+        {
+            "level": 1,
+            "requirements": [
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 1,
+                    "level": 1
+                }
+            ]
+        },
+        {
+            "level": 2,
+            "requirements": [
+                {
+                    "type": "(s(a)?(restore_xtiles(a,16)):(n+=Zi(a,6)))"
+                }
+            ]
+        },
+        {
+            "level": 3,
+            "requirements": [
+                {
+                    "type": "n+=Qi",
+                    "count": 3
+                }
+            ]
+        },
+        {
+            "level": 4,
+            "requirements": [
+                {
+                    "type": "n+=D",
+                    "count": 25
+                }
+            ]
+        },
+        {
+            "level": 5,
+            "requirements": [
+                {
+                    "type": "(s(a)?(restore_xtiles(a,60)):(restore_xtiles(a,80)))"
+                }
+            ]
+        },
+        {
+            "level": 6,
+            "requirements": [
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 5,
+                    "level": 4
+                }
+            ]
+        },
+        {
+            "level": 7,
+            "requirements": [
+                {
+                    "type": "(s(a)?(n+=Zi(a,10)):(n+=ra(a,4)))"
+                }
+            ]
+        },
+        {
+            "level": 8,
+            "requirements": [
+                {
+                    "type": "(Math.abs(a.x)%3==0?(xtowns_of_level_y(a,7,5)):(n+=$i(a,200)))"
+                }
+            ]
+        },
+        {
+            "level": 9,
+            "requirements": [
+                {
+                    "type": "n+=ea",
+                    "count": 10
+                }
+            ]
+        },
+        {
+            "level": 10,
+            "requirements": [
+                {
+                    "type": "n+=ta",
+                    "count": 5,
+                    "level": 20
+                }
+            ]
+        },
+        {
+            "level": 11,
+            "requirements": [
+                {
+                    "type": "restore_xtiles",
+                    "count": 130
+                }
+            ]
+        },
+        {
+            "level": 12,
+            "requirements": [
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 10,
+                    "level": 6
+                }
+            ]
+        },
+        {
+            "level": 13,
+            "requirements": [
+                {
+                    "type": "(n+=na(a))"
+                }
+            ]
+        },
+        {
+            "level": 14,
+            "requirements": [
+                {
+                    "type": "ypercent_of_road_at_level_x",
+                    "count": 2,
+                    "level": 15
+                }
+            ]
+        },
+        {
+            "level": 15,
+            "requirements": [
+                {
+                    "type": "Math.abs(a.x)%2==0&&(n+=Qi(a,12))"
+                },
+                {
+                    "type": "Math.abs(a.x)%2==1&&(xtowns_of_level_y(a,10,8))"
+                }
+            ]
+        },
+        {
+            "level": 16,
+            "requirements": [
+                {
+                    "type": "n+=ra",
+                    "count": 6
+                }
+            ]
+        },
+        {
+            "level": 17,
+            "requirements": [
+                {
+                    "type": "(s(a)?(restore_xtiles(a,350)):(n+=Zi(a,25)))"
+                }
+            ]
+        },
+        {
+            "level": 18,
+            "requirements": [
+                {
+                    "type": "Math.abs(a.x)%2==0&&(n+=D(a,250))"
+                },
+                {
+                    "type": "Math.abs(a.x)%2==1&&(xwater_tiles(a,100))"
+                }
+            ]
+        },
+        {
+            "level": 19,
+            "requirements": [
+                {
+                    "type": "n+=ia",
+                    "count": 150
+                }
+            ]
+        },
+        {
+            "level": 20,
+            "requirements": [
+                {
+                    "type": "restore_xtiles",
+                    "count": 550
+                },
+                {
+                    "type": "(n+=$i(a,550))"
+                }
+            ]
+        },
+        {
+            "level": 21,
+            "requirements": [
+                {
+                    "type": "restore_xtiles",
+                    "count": 800
+                },
+                {
+                    "type": "n+=ta",
+                    "count": 6,
+                    "level": 45
+                }
+            ]
+        },
+        {
+            "level": 22,
+            "requirements": [
+                {
+                    "type": "n+=ea",
+                    "count": 24
+                }
+            ]
+        },
+        {
+            "level": 23,
+            "requirements": [
+                {
+                    "type": "ypercent_of_road_at_level_x",
+                    "count": 2,
+                    "level": 60
+                }
+            ]
+        },
+        {
+            "level": 24,
+            "requirements": [
+                {
+                    "type": "restore_xtiles",
+                    "count": 1500
+                }
+            ]
+        },
+        {
+            "level": 25,
+            "requirements": [
+                {
+                    "type": "n+=D",
+                    "count": 600
+                }
+            ]
+        },
+        {
+            "level": 26,
+            "requirements": [
+                {
+                    "type": "ypercent_of_road_at_level_x",
+                    "count": 3,
+                    "level": 10
+                }
+            ]
+        },
+        {
+            "level": 27,
+            "requirements": [
+                {
+                    "type": "n+=ia",
+                    "count": 350
+                }
+            ]
+        },
+        {
+            "level": 28,
+            "requirements": [
+                {
+                    "type": "n+=Qi",
+                    "count": 25
+                },
+                {
+                    "type": "n+=D",
+                    "count": 750
+                }
+            ]
+        },
+        {
+            "level": 29,
+            "requirements": [
+                {
+                    "type": "n+=ea",
+                    "count": 30
+                },
+                {
+                    "type": "restore_xtiles",
+                    "count": 2400
+                }
+            ]
+        },
+        {
+            "level": 30,
+            "requirements": [
+                {
+                    "type": "xwater_tiles",
+                    "count": 600
+                },
+                {
+                    "type": "n+=D",
+                    "count": 800
+                }
+            ]
+        },
+        {
+            "level": 31,
+            "requirements": [
+                {
+                    "type": "n+=ia",
+                    "count": 450
+                },
+                {
+                    "type": "forest_income_x",
+                    "count": 900
+                }
+            ]
+        },
+        {
+            "level": 32,
+            "requirements": [
+                {
+                    "type": "ypercent_of_road_at_level_x",
+                    "count": 3,
+                    "level": 20
+                }
+            ]
+        },
+        {
+            "level": 33,
+            "requirements": [
+                {
+                    "type": "n+=ra",
+                    "count": 9
+                },
+                {
+                    "type": "forest_income_x",
+                    "count": 1700
+                }
+            ]
+        },
+        {
+            "level": 34,
+            "requirements": [
+                {
+                    "type": "xwater_tiles",
+                    "count": 1100
+                },
+                {
+                    "type": "ypercent_of_road_at_level_x",
+                    "count": 3,
+                    "level": 35
+                }
+            ]
+        },
+        {
+            "level": 35,
+            "requirements": [
+                {
+                    "type": "restore_xtiles",
+                    "count": 3000
+                },
+                {
+                    "type": "forest_income_x",
+                    "count": 2500
+                }
+            ]
+        },
+        {
+            "level": 36,
+            "requirements": [
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 5,
+                    "level": 18
+                }
+            ]
+        },
+        {
+            "level": 37,
+            "requirements": [
+                {
+                    "type": "ypercent_of_road_at_level_x",
+                    "count": 3,
+                    "level": 60
+                }
+            ]
+        },
+        {
+            "level": 38,
+            "requirements": [
+                {
+                    "type": "n+=ia",
+                    "count": 520
+                }
+            ]
+        },
+        {
+            "level": 39,
+            "requirements": [
+                {
+                    "type": "xwater_tiles",
+                    "count": 2500
+                },
+                {
+                    "type": "forest_income_x",
+                    "count": 4500
+                }
+            ]
+        },
+        {
+            "level": 40,
+            "requirements": [
+                {
+                    "type": "restore_xtiles",
+                    "count": 4500
+                },
+                {
+                    "type": "ypercent_of_road_at_level_x",
+                    "count": 4,
+                    "level": 10
+                }
+            ]
+        },
+        {
+            "level": 41,
+            "requirements": [
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 35,
+                    "level": 15
+                }
+            ]
+        },
+        {
+            "level": 42,
+            "requirements": [
+                {
+                    "type": "forest_income_x",
+                    "count": 6500
+                }
+            ]
+        },
+        {
+            "level": 43,
+            "requirements": [
+                {
+                    "type": "ypercent_of_road_at_level_x",
+                    "count": 4,
+                    "level": 20
+                }
+            ]
+        },
+        {
+            "level": 44,
+            "requirements": [
+                {
+                    "type": "xmegacities",
+                    "count": 1
+                },
+                {
+                    "type": "n+=sa",
+                    "count": 1
+                },
+                {
+                    "type": "(o=!1)"
+                }
+            ]
+        },
+        {
+            "level": 45,
+            "requirements": [
+                {
+                    "type": "xwater_tiles",
+                    "count": 4000
+                },
+                {
+                    "type": "n+=ca",
+                    "count": 30
+                }
+            ]
+        },
+        {
+            "level": 46,
+            "requirements": [
+                {
+                    "type": "n+=D",
+                    "count": 6000
+                }
+            ]
+        },
+        {
+            "level": 47,
+            "requirements": [
+                {
+                    "type": "connect_xmegacities_to_main_settlement",
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "level": 48,
+            "requirements": [
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 20,
+                    "level": 30
+                },
+                {
+                    "type": "ypercent_of_road_at_level_x",
+                    "count": 4,
+                    "level": 35
+                }
+            ]
+        },
+        {
+            "level": 49,
+            "requirements": [
+                {
+                    "type": "restore_xtiles",
+                    "count": 9000
+                },
+                {
+                    "type": "n+=ga",
+                    "count": 1500
+                }
+            ]
+        },
+        {
+            "level": 50,
+            "requirements": [
+                {
+                    "type": "xdeep_water_tiles",
+                    "count": 400
+                }
+            ]
+        },
+        {
+            "level": 51,
+            "requirements": [
+                {
+                    "type": "xwater_tiles",
+                    "count": 7500
+                },
+                {
+                    "type": "forest_income_x",
+                    "count": 12000
+                }
+            ]
+        },
+        {
+            "level": 52,
+            "requirements": [
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 15,
+                    "level": 35
+                }
+            ]
+        },
+        {
+            "level": 53,
+            "requirements": [
+                {
+                    "type": "n+=ga",
+                    "count": 2800
+                },
+                {
+                    "type": "n+=ea",
+                    "count": 60
+                }
+            ]
+        },
+        {
+            "level": 54,
+            "requirements": [
+                {
+                    "type": "restore_xtiles",
+                    "count": 15000
+                },
+                {
+                    "type": "n+=ca",
+                    "count": 20
+                }
+            ]
+        },
+        {
+            "level": 55,
+            "requirements": [
+                {
+                    "type": "ypercent_of_road_at_level_x",
+                    "count": 4,
+                    "level": 60
+                }
+            ]
+        },
+        {
+            "level": 56,
+            "requirements": [
+                {
+                    "type": "xmegacities",
+                    "count": 3
+                }
+            ]
+        },
+        {
+            "level": 57,
+            "requirements": [
+                {
+                    "type": "xwater_tiles",
+                    "count": 12500
+                },
+                {
+                    "type": "(n+=ha(a,yn))"
+                }
+            ]
+        },
+        {
+            "level": 58,
+            "requirements": [
+                {
+                    "type": "connect_xmegacities_to_main_settlement",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 59,
+            "requirements": [
+                {
+                    "type": "xdeep_water_tiles",
+                    "count": 1500
+                },
+                {
+                    "type": "ypercent_of_road_at_level_x",
+                    "count": 4,
+                    "level": 80
+                }
+            ]
+        },
+        {
+            "level": 60,
+            "requirements": [
+                {
+                    "type": "restore_xtiles",
+                    "count": 22000
+                },
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 8,
+                    "level": 45
+                }
+            ]
+        },
+        {
+            "level": 61,
+            "requirements": [
+                {
+                    "type": "(n+=ha(a,bn))"
+                }
+            ]
+        },
+        {
+            "level": 62,
+            "requirements": [
+                {
+                    "type": "ypercent_of_road_at_level_x",
+                    "count": 5,
+                    "level": 15
+                }
+            ]
+        },
+        {
+            "level": 63,
+            "requirements": [
+                {
+                    "type": "xwater_tiles",
+                    "count": 15000
+                }
+            ]
+        },
+        {
+            "level": 64,
+            "requirements": [
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 100,
+                    "level": 30
+                }
+            ]
+        },
+        {
+            "level": 65,
+            "requirements": [
+                {
+                    "type": "forest_income_x",
+                    "count": 20000
+                },
+                {
+                    "type": "xdeep_water_tiles",
+                    "count": 4500
+                }
+            ]
+        },
+        {
+            "level": 66,
+            "requirements": [
+                {
+                    "type": "xwater_tiles",
+                    "count": 20000
+                },
+                {
+                    "type": "ypercent_of_road_at_level_x",
+                    "count": 5,
+                    "level": 25
+                },
+                {
+                    "type": "connect_xmegacities_to_main_settlement",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 67,
+            "requirements": [
+                {
+                    "type": "restore_xtiles",
+                    "count": 30000
+                },
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 15,
+                    "level": 50
+                }
+            ]
+        },
+        {
+            "level": 68,
+            "requirements": [
+                {
+                    "type": "forest_income_x",
+                    "count": 30000
+                },
+                {
+                    "type": "(n+=ha(a,xn))"
+                }
+            ]
+        },
+        {
+            "level": 69,
+            "requirements": [
+                {
+                    "type": "ypercent_of_road_at_level_x",
+                    "count": 5,
+                    "level": 40
+                },
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 60,
+                    "level": 40
+                }
+            ]
+        },
+        {
+            "level": 70,
+            "requirements": [
+                {
+                    "type": "xdeep_water_tiles",
+                    "count": 8000
+                },
+                {
+                    "type": "n+=ga",
+                    "count": 4000
+                }
+            ]
+        },
+        {
+            "level": 71,
+            "requirements": [
+                {
+                    "type": "forest_income_x",
+                    "count": 50000
+                },
+                {
+                    "type": "xwater_tiles",
+                    "count": 25000
+                }
+            ]
+        },
+        {
+            "level": 72,
+            "requirements": [
+                {
+                    "type": "ypercent_of_road_at_level_x",
+                    "count": 5,
+                    "level": 60
+                },
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 5,
+                    "level": 66
+                }
+            ]
+        },
+        {
+            "level": 73,
+            "requirements": [
+                {
+                    "type": "xdeep_water_tiles",
+                    "count": 10000
+                }
+            ]
+        },
+        {
+            "level": 74,
+            "requirements": [
+                {
+                    "type": "more_x_of_types",
+                    "count": 5,
+                    "types": [
+                        "super_factory",
+                        "super_factory_2"
+                    ]
+                },
+                {
+                    "type": "forest_income_x",
+                    "count": 65000
+                }
+            ]
+        },
+        {
+            "level": 75,
+            "requirements": [
+                {
+                    "type": "n+=I",
+                    "count": 15
+                },
+                {
+                    "type": "xwater_tiles",
+                    "count": 30000
+                }
+            ]
+        },
+        {
+            "level": 76,
+            "requirements": [
+                {
+                    "type": "more_x_of_types",
+                    "count": 10,
+                    "types": [
+                        "uranium_factory_1"
+                    ]
+                },
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 55,
+                    "level": 50
+                }
+            ]
+        },
+        {
+            "level": 77,
+            "requirements": [
+                {
+                    "type": "more_x_of_types",
+                    "count": 10,
+                    "types": [
+                        "rock_water_mine"
+                    ]
+                },
+                {
+                    "type": "ypercent_of_road_at_level_x",
+                    "count": 5,
+                    "level": 80
+                },
+                {
+                    "type": "connect_xmegacities_to_main_settlement",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 78,
+            "requirements": [
+                {
+                    "type": "more_x_of_types",
+                    "count": 70,
+                    "types": [
+                        "chip_factory_big"
+                    ]
+                },
+                {
+                    "type": "less_x_of_types",
+                    "count": 1500,
+                    "types": [
+                        "scorched"
+                    ]
+                }
+            ]
+        },
+        {
+            "level": 79,
+            "requirements": [
+                {
+                    "type": "xmegacities_of_level_y",
+                    "count": 3,
+                    "level": 75
+                },
+                {
+                    "type": "xdeep_water_tiles",
+                    "count": 15000
+                }
+            ]
+        },
+        {
+            "level": 80,
+            "requirements": [
+                {
+                    "type": "forest_income_x",
+                    "count": 75000
+                },
+                {
+                    "type": "xwater_tiles",
+                    "count": 35000
+                }
+            ]
+        },
+        {
+            "level": 81,
+            "requirements": [
+                {
+                    "type": "n+=I",
+                    "count": 3
+                },
+                {
+                    "type": "(n+=ha(a,Sn))"
+                }
+            ]
+        },
+        {
+            "level": 82,
+            "requirements": [
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 45,
+                    "level": 55
+                },
+                {
+                    "type": "ypercent_of_road_at_level_x",
+                    "count": 5,
+                    "level": 90
+                }
+            ]
+        },
+        {
+            "level": 83,
+            "requirements": [
+                {
+                    "type": "forest_income_x",
+                    "count": 100000
+                },
+                {
+                    "type": "xdeep_water_tiles",
+                    "count": 20000
+                }
+            ]
+        },
+        {
+            "level": 84,
+            "requirements": [
+                {
+                    "type": "less_x_of_types",
+                    "count": 1000,
+                    "types": [
+                        "scorched"
+                    ]
+                },
+                {
+                    "type": "xmegacities_of_level_y",
+                    "count": 3,
+                    "level": 78
+                }
+            ]
+        },
+        {
+            "level": 85,
+            "requirements": [
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 150,
+                    "level": 35
+                },
+                {
+                    "type": "ypercent_of_road_at_level_x",
+                    "count": 5,
+                    "level": 95
+                }
+            ]
+        },
+        {
+            "level": 86,
+            "requirements": [
+                {
+                    "type": "restore_xtiles",
+                    "count": 60000
+                },
+                {
+                    "type": "less_x_of_types",
+                    "count": 800,
+                    "types": [
+                        "scorched"
+                    ]
+                }
+            ]
+        },
+        {
+            "level": 87,
+            "requirements": [
+                {
+                    "type": "use_x_bombs",
+                    "count": 80
+                },
+                {
+                    "type": "place_xpavement_tiles",
+                    "count": 40
+                },
+                {
+                    "type": "xwater_tiles",
+                    "count": 45000
+                }
+            ]
+        },
+        {
+            "level": 88,
+            "requirements": [
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 15,
+                    "level": 75
+                },
+                {
+                    "type": "xmegacities",
+                    "count": 4
+                }
+            ]
+        },
+        {
+            "level": 89,
+            "requirements": [
+                {
+                    "type": "ypercent_of_road_at_level_x",
+                    "count": 6,
+                    "level": 15
+                },
+                {
+                    "type": "connect_xmegacities_to_main_settlement",
+                    "count": 3
+                },
+                {
+                    "type": "xdeep_water_tiles",
+                    "count": 30000
+                }
+            ]
+        },
+        {
+            "level": 90,
+            "requirements": [
+                {
+                    "type": "more_x_of_types",
+                    "count": 100,
+                    "types": [
+                        "uranium_factory_1"
+                    ]
+                },
+                {
+                    "type": "forest_income_x",
+                    "count": 120000
+                }
+            ]
+        },
+        {
+            "level": 91,
+            "requirements": [
+                {
+                    "type": "more_x_of_types",
+                    "count": 20,
+                    "types": [
+                        "filter_array_1"
+                    ]
+                },
+                {
+                    "type": "xmegacities_of_level_y",
+                    "count": 4,
+                    "level": 80
+                }
+            ]
+        },
+        {
+            "level": 92,
+            "requirements": [
+                {
+                    "type": "less_x_of_types",
+                    "count": 750,
+                    "types": [
+                        "scorched"
+                    ]
+                },
+                {
+                    "type": "restore_xtiles",
+                    "count": 90000
+                }
+            ]
+        },
+        {
+            "level": 93,
+            "requirements": [
+                {
+                    "type": "ypercent_of_road_at_level_x",
+                    "count": 6,
+                    "level": 30
+                },
+                {
+                    "type": "xdeep_water_tiles",
+                    "count": 35000
+                }
+            ]
+        },
+        {
+            "level": 94,
+            "requirements": [
+                {
+                    "type": "more_x_of_types",
+                    "count": 40,
+                    "types": [
+                        "filter_array_1"
+                    ]
+                },
+                {
+                    "type": "xmegacities_of_level_y",
+                    "count": 3,
+                    "level": 86
+                }
+            ]
+        },
+        {
+            "level": 95,
+            "requirements": [
+                {
+                    "type": "more_x_of_types",
+                    "count": 15,
+                    "types": [
+                        "foundry_eco"
+                    ]
+                },
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 120,
+                    "level": 45
+                }
+            ]
+        },
+        {
+            "level": 96,
+            "requirements": [
+                {
+                    "type": "ypercent_of_road_at_level_x",
+                    "count": 6,
+                    "level": 50
+                },
+                {
+                    "type": "forest_income_x",
+                    "count": 150000
+                },
+                {
+                    "type": "xwater_tiles",
+                    "count": 55000
+                }
+            ]
+        },
+        {
+            "level": 97,
+            "requirements": [
+                {
+                    "type": "less_x_of_types",
+                    "count": 20,
+                    "types": [
+                        "foundry_big"
+                    ]
+                },
+                {
+                    "type": "less_x_of_types",
+                    "count": 500,
+                    "types": [
+                        "scorched"
+                    ]
+                }
+            ]
+        },
+        {
+            "level": 98,
+            "requirements": [
+                {
+                    "type": "restore_xtiles",
+                    "count": 130000
+                },
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 45,
+                    "level": 70
+                }
+            ]
+        },
+        {
+            "level": 99,
+            "requirements": [
+                {
+                    "type": "more_x_of_types",
+                    "count": 25,
+                    "types": [
+                        "foundry_eco"
+                    ]
+                },
+                {
+                    "type": "xmegacities_of_level_y",
+                    "count": 4,
+                    "level": 90
+                }
+            ]
+        },
+        {
+            "level": 100,
+            "requirements": [
+                {
+                    "type": "less_x_of_types",
+                    "count": 3,
+                    "types": [
+                        "foundry_big"
+                    ]
+                },
+                {
+                    "type": "forest_income_x",
+                    "count": 200000
+                },
+                {
+                    "type": "ypercent_of_road_at_level_x",
+                    "count": 6,
+                    "level": 60
+                }
+            ]
+        },
+        {
+            "level": 101,
+            "requirements": [
+                {
+                    "type": "more_x_of_types",
+                    "count": 60,
+                    "types": [
+                        "filter_array_1"
+                    ]
+                },
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 180,
+                    "level": 40
+                }
+            ]
+        },
+        {
+            "level": 102,
+            "requirements": [
+                {
+                    "type": "more_x_of_types",
+                    "count": 50,
+                    "types": [
+                        "golden_mine_4",
+                        "golden_mine_premium_3"
+                    ]
+                },
+                {
+                    "type": "place_xpavement_tiles",
+                    "count": 90
+                },
+                {
+                    "type": "xwater_tiles",
+                    "count": 65000
+                }
+            ]
+        },
+        {
+            "level": 103,
+            "requirements": [
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 35,
+                    "level": 80
+                },
+                {
+                    "type": "more_x_of_types",
+                    "count": 10,
+                    "types": [
+                        "uranium_plant"
+                    ]
+                }
+            ]
+        },
+        {
+            "level": 104,
+            "requirements": [
+                {
+                    "type": "restore_xtiles",
+                    "count": 180000
+                },
+                {
+                    "type": "forest_income_x",
+                    "count": 220000
+                },
+                {
+                    "type": "xmegacities_of_level_y",
+                    "count": 5,
+                    "level": 85
+                }
+            ]
+        },
+        {
+            "level": 105,
+            "requirements": [
+                {
+                    "type": "xdeep_water_tiles",
+                    "count": 45000
+                },
+                {
+                    "type": "less_x_of_types",
+                    "count": 1000,
+                    "types": [
+                        "lava_rift"
+                    ]
+                }
+            ]
+        },
+        {
+            "level": 106,
+            "requirements": [
+                {
+                    "type": "ypercent_of_road_at_level_x",
+                    "count": 6,
+                    "level": 70
+                },
+                {
+                    "type": "connect_xmegacities_to_main_settlement",
+                    "count": 3
+                },
+                {
+                    "type": "less_x_of_types",
+                    "count": 350,
+                    "types": [
+                        "scorched"
+                    ]
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 107,
+            "requirements": [
+                {
+                    "type": "less_x_of_types",
+                    "count": 2,
+                    "types": [
+                        "coal_plant"
+                    ]
+                },
+                {
+                    "type": "use_x_bombs",
+                    "count": 150
+                }
+            ]
+        },
+        {
+            "level": 108,
+            "requirements": [
+                {
+                    "type": "forest_income_x",
+                    "count": 250000
+                },
+                {
+                    "type": "create_x_water_tiles",
+                    "count": 1000
+                },
+                {
+                    "type": "xwater_tiles",
+                    "count": 85000
+                }
+            ]
+        },
+        {
+            "level": 109,
+            "requirements": [
+                {
+                    "type": "restore_xtiles",
+                    "count": 225000
+                },
+                {
+                    "type": "xmegacities_of_level_y",
+                    "count": 3,
+                    "level": 100
+                }
+            ]
+        },
+        {
+            "level": 110,
+            "requirements": [
+                {
+                    "type": "more_x_of_types",
+                    "count": 20,
+                    "types": [
+                        "uranium_plant"
+                    ]
+                },
+                {
+                    "type": "xdeep_water_tiles",
+                    "count": 55000
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 111,
+            "requirements": [
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 250,
+                    "level": 40
+                },
+                {
+                    "type": "ypercent_of_road_at_level_x",
+                    "count": 6,
+                    "level": 80
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 112,
+            "requirements": [
+                {
+                    "type": "forest_income_x",
+                    "count": 300000
+                },
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 6,
+                    "level": 95
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 113,
+            "requirements": [
+                {
+                    "type": "have_x_passenger_trains",
+                    "count": 4
+                },
+                {
+                    "type": "place_xpavement_tiles",
+                    "count": 120
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 114,
+            "requirements": [
+                {
+                    "type": "xmegacities_of_level_y",
+                    "count": 2,
+                    "level": 110
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 115,
+            "requirements": [
+                {
+                    "type": "restore_xtiles",
+                    "count": 250000
+                },
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 250,
+                    "level": 55
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 116,
+            "requirements": [
+                {
+                    "type": "(n+=da(a,`oil_rig_ground`,50))"
+                },
+                {
+                    "type": "forest_income_x",
+                    "count": 350000
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 117,
+            "requirements": [
+                {
+                    "type": "more_x_of_types",
+                    "count": 3,
+                    "types": [
+                        "rift_mine_uranium"
+                    ]
+                },
+                {
+                    "type": "(n+=da(a,`oil_rig`,5))"
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 118,
+            "requirements": [
+                {
+                    "type": "(n+=L(a,`both_oils`,10,f(`Oil`),Hi([`water`,`oil_water`],50,`info-tile-img2`)+Hi([`ground_oil`],50,`info-tile-img2`),))"
+                },
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 20,
+                    "level": 100
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                },
+                {
+                    "type": "xdeep_water_tiles",
+                    "count": 65000
+                }
+            ]
+        },
+        {
+            "level": 119,
+            "requirements": [
+                {
+                    "type": "(n+=L(a,`both_oils`,3,f(`Oil`),Hi([`water`,`oil_water`],50,`info-tile-img2`)+Hi([`ground_oil`],50,`info-tile-img2`),))"
+                },
+                {
+                    "type": "xmegacities_of_level_y",
+                    "count": 4,
+                    "level": 105
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 120,
+            "requirements": [
+                {
+                    "type": "use_x_bombs",
+                    "count": 300
+                },
+                {
+                    "type": "have_x_passenger_trains",
+                    "count": 5
+                },
+                {
+                    "type": "more_x_of_types",
+                    "count": 30,
+                    "types": [
+                        "foundry_eco"
+                    ]
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 121,
+            "requirements": [
+                {
+                    "type": "place_xpavement_tiles",
+                    "count": 170
+                },
+                {
+                    "type": "forest_income_x",
+                    "count": 400000
+                },
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 350,
+                    "level": 50
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 122,
+            "requirements": [
+                {
+                    "type": "more_x_of_types",
+                    "count": 100,
+                    "types": [
+                        "filter_array_1"
+                    ]
+                },
+                {
+                    "type": "(n+=da(a,`heavy_lumber_mill`,5))"
+                },
+                {
+                    "type": "less_x_of_types",
+                    "count": 100,
+                    "types": [
+                        "scorched"
+                    ]
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 123,
+            "requirements": [
+                {
+                    "type": "less_x_of_types",
+                    "count": 1,
+                    "types": [
+                        "water_uran_barrel"
+                    ]
+                },
+                {
+                    "type": "xmegacities_of_level_y",
+                    "count": 3,
+                    "level": 115
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 124,
+            "requirements": [
+                {
+                    "type": "n+=z",
+                    "count": 120
+                },
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 110,
+                    "level": 85
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 125,
+            "requirements": [
+                {
+                    "type": "n+=z",
+                    "count": 130
+                },
+                {
+                    "type": "more_x_of_types",
+                    "count": 120,
+                    "types": [
+                        "filter_array_1"
+                    ]
+                },
+                {
+                    "type": "more_x_of_types",
+                    "count": 5,
+                    "types": [
+                        "rift_mine_uranium"
+                    ]
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 126,
+            "requirements": [
+                {
+                    "type": "n+=B",
+                    "count": 10000
+                },
+                {
+                    "type": "less_x_of_types",
+                    "count": 550,
+                    "types": [
+                        "lava_rift"
+                    ]
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 127,
+            "requirements": [
+                {
+                    "type": "xmegacities_of_level_y",
+                    "count": 5,
+                    "level": 110
+                },
+                {
+                    "type": "forest_income_x",
+                    "count": 500000
+                },
+                {
+                    "type": "n+=B",
+                    "count": 8500
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 128,
+            "requirements": [
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 250,
+                    "level": 75
+                },
+                {
+                    "type": "n+=B",
+                    "count": 7000
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 129,
+            "requirements": [
+                {
+                    "type": "more_x_of_types",
+                    "count": 8,
+                    "types": [
+                        "super_factory",
+                        "super_factory_2"
+                    ]
+                },
+                {
+                    "type": "n+=B",
+                    "count": 6000
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 130,
+            "requirements": [
+                {
+                    "type": "ypercent_of_road_at_level_x",
+                    "count": 6,
+                    "level": 92
+                },
+                {
+                    "type": "connect_xmegacities_to_main_settlement",
+                    "count": 4
+                },
+                {
+                    "type": "have_x_passenger_trains",
+                    "count": 6
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 131,
+            "requirements": [
+                {
+                    "type": "xmegacities_of_level_y",
+                    "count": 4,
+                    "level": 120
+                },
+                {
+                    "type": "n+=B",
+                    "count": 5000
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                },
+                {
+                    "type": "restore_xtiles",
+                    "count": 280000
+                }
+            ]
+        },
+        {
+            "level": 132,
+            "requirements": [
+                {
+                    "type": "more_x_of_types",
+                    "count": 3,
+                    "types": [
+                        "super_factory_2"
+                    ]
+                },
+                {
+                    "type": "n+=B",
+                    "count": 4000
+                },
+                {
+                    "type": "forest_income_x",
+                    "count": 650000
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 133,
+            "requirements": [
+                {
+                    "type": "more_x_of_types",
+                    "count": 6,
+                    "types": [
+                        "super_factory_2"
+                    ]
+                },
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 200,
+                    "level": 100
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                },
+                {
+                    "type": "xdeep_water_tiles",
+                    "count": 80000
+                }
+            ]
+        },
+        {
+            "level": 134,
+            "requirements": [
+                {
+                    "type": "more_x_of_types",
+                    "count": 11,
+                    "types": [
+                        "super_factory_2"
+                    ]
+                },
+                {
+                    "type": "n+=B",
+                    "count": 3500
+                },
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 50,
+                    "level": 120
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 135,
+            "requirements": [
+                {
+                    "type": "n+=V",
+                    "count": 50
+                },
+                {
+                    "type": "n+=H",
+                    "count": 10
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 136,
+            "requirements": [
+                {
+                    "type": "more_x_of_types",
+                    "count": 50,
+                    "types": [
+                        "bio_dom",
+                        "bio_dom_big"
+                    ]
+                },
+                {
+                    "type": "(n+=U(a,C[a.mesto]))"
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                },
+                {
+                    "type": "(o=!1)"
+                }
+            ]
+        },
+        {
+            "level": 137,
+            "requirements": [
+                {
+                    "type": "place_xpavement_tiles",
+                    "count": 300
+                },
+                {
+                    "type": "xmegacities_of_level_y",
+                    "count": 3,
+                    "level": 135
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 138,
+            "requirements": [
+                {
+                    "type": "n+=B",
+                    "count": 3500
+                },
+                {
+                    "type": "n+=H",
+                    "count": 10
+                },
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 350,
+                    "level": 90
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 139,
+            "requirements": [
+                {
+                    "type": "n+=W",
+                    "count": 2
+                },
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 6,
+                    "level": 132
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                },
+                {
+                    "type": "(o=!1)"
+                }
+            ]
+        },
+        {
+            "level": 140,
+            "requirements": [
+                {
+                    "type": "n+=B",
+                    "count": 3500
+                },
+                {
+                    "type": "n+=H",
+                    "count": 15
+                },
+                {
+                    "type": "more_x_of_types",
+                    "count": 80,
+                    "types": [
+                        "bio_dom",
+                        "bio_dom_big"
+                    ]
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 141,
+            "requirements": [
+                {
+                    "type": "n+=B",
+                    "count": 3500
+                },
+                {
+                    "type": "xmegacities_of_level_y",
+                    "count": 6,
+                    "level": 125
+                },
+                {
+                    "type": "forest_income_x",
+                    "count": 800000
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                },
+                {
+                    "type": "(o=!1)"
+                }
+            ]
+        },
+        {
+            "level": 142,
+            "requirements": [
+                {
+                    "type": "n+=W",
+                    "count": 4
+                },
+                {
+                    "type": "n+=z",
+                    "count": 170
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 143,
+            "requirements": [
+                {
+                    "type": "n+=H",
+                    "count": 20
+                },
+                {
+                    "type": "more_x_of_types",
+                    "count": 150,
+                    "types": [
+                        "bio_dom",
+                        "bio_dom_big"
+                    ]
+                },
+                {
+                    "type": "(n+=U(a,C[a.mesto]))"
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                },
+                {
+                    "type": "(o=!1)"
+                }
+            ]
+        },
+        {
+            "level": 144,
+            "requirements": [
+                {
+                    "type": "n+=V",
+                    "count": 60
+                },
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 150,
+                    "level": 110
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 145,
+            "requirements": [
+                {
+                    "type": "xmegacities_of_level_y",
+                    "count": 4,
+                    "level": 140
+                },
+                {
+                    "type": "place_xpavement_tiles",
+                    "count": 400
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                },
+                {
+                    "type": "xdeep_water_tiles",
+                    "count": 90000
+                },
+                {
+                    "type": "(o=!1)"
+                }
+            ]
+        },
+        {
+            "level": 146,
+            "requirements": [
+                {
+                    "type": "n+=H",
+                    "count": 30
+                },
+                {
+                    "type": "n+=B",
+                    "count": 3500
+                },
+                {
+                    "type": "(n+=U(a,C[a.mesto]))"
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                },
+                {
+                    "type": "(o=!1)"
+                }
+            ]
+        },
+        {
+            "level": 147,
+            "requirements": [
+                {
+                    "type": "xmegacities_of_level_y",
+                    "count": 7,
+                    "level": 110
+                },
+                {
+                    "type": "more_x_of_types",
+                    "count": 200,
+                    "types": [
+                        "bio_dom",
+                        "bio_dom_big"
+                    ]
+                },
+                {
+                    "type": "more_x_of_types",
+                    "count": 300,
+                    "types": [
+                        "windmill_2"
+                    ]
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 148,
+            "requirements": [
+                {
+                    "type": "n+=W",
+                    "count": 5
+                },
+                {
+                    "type": "n+=G",
+                    "count": 25000
+                },
+                {
+                    "type": "less_x_of_types",
+                    "count": 150,
+                    "types": [
+                        "lava_rift"
+                    ]
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 149,
+            "requirements": [
+                {
+                    "type": "xmegacities_of_level_y",
+                    "count": 3,
+                    "level": 145
+                },
+                {
+                    "type": "forest_income_x",
+                    "count": 900000
+                },
+                {
+                    "type": "n+=V",
+                    "count": 65
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                },
+                {
+                    "type": "(o=!1)"
+                }
+            ]
+        },
+        {
+            "level": 150,
+            "requirements": [
+                {
+                    "type": "n+=G",
+                    "count": 30000
+                },
+                {
+                    "type": "(n+=U(a,C[a.mesto]))"
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                },
+                {
+                    "type": "restore_xtiles",
+                    "count": 310000
+                },
+                {
+                    "type": "(o=!1)"
+                }
+            ]
+        },
+        {
+            "level": 151,
+            "requirements": [
+                {
+                    "type": "n+=W",
+                    "count": 6
+                },
+                {
+                    "type": "xmegacities_of_level_y",
+                    "count": 8,
+                    "level": 115
+                },
+                {
+                    "type": "place_xpavement_tiles",
+                    "count": 450
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 152,
+            "requirements": [
+                {
+                    "type": "more_x_of_types",
+                    "count": 40,
+                    "types": [
+                        "uranium_plant"
+                    ]
+                },
+                {
+                    "type": "more_x_of_types",
+                    "count": 250,
+                    "types": [
+                        "filter_array_1"
+                    ]
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 153,
+            "requirements": [
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 70,
+                    "level": 130
+                },
+                {
+                    "type": "more_x_of_types",
+                    "count": 250,
+                    "types": [
+                        "bio_dom",
+                        "bio_dom_big"
+                    ]
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 154,
+            "requirements": [
+                {
+                    "type": "n+=G",
+                    "count": 35000
+                },
+                {
+                    "type": "n+=H",
+                    "count": 40
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 155,
+            "requirements": [
+                {
+                    "type": "xmegacities_of_level_y",
+                    "count": 3,
+                    "level": 150
+                },
+                {
+                    "type": "n+=W",
+                    "count": 7
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 156,
+            "requirements": [
+                {
+                    "type": "n+=V",
+                    "count": 70
+                },
+                {
+                    "type": "(n+=U(a,C[a.mesto]))"
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                },
+                {
+                    "type": "(o=!1)"
+                }
+            ]
+        },
+        {
+            "level": 157,
+            "requirements": [
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 180,
+                    "level": 100
+                },
+                {
+                    "type": "forest_income_x",
+                    "count": 1000000
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 158,
+            "requirements": [
+                {
+                    "type": "place_xpavement_tiles",
+                    "count": 475
+                },
+                {
+                    "type": "n+=z",
+                    "count": 220
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 159,
+            "requirements": [
+                {
+                    "type": "xmegacities_of_level_y",
+                    "count": 7,
+                    "level": 125
+                },
+                {
+                    "type": "n+=B",
+                    "count": 3500
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 160,
+            "requirements": [
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 350,
+                    "level": 95
+                },
+                {
+                    "type": "n+=W",
+                    "count": 8
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                },
+                {
+                    "type": "(o=!1)"
+                }
+            ]
+        },
+        {
+            "level": 161,
+            "requirements": [
+                {
+                    "type": "more_x_of_types",
+                    "count": 350,
+                    "types": [
+                        "filter_array_1"
+                    ]
+                },
+                {
+                    "type": "forest_income_x",
+                    "count": 1100000
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 162,
+            "requirements": [
+                {
+                    "type": "xmegacities_of_level_y",
+                    "count": 2,
+                    "level": 160
+                },
+                {
+                    "type": "more_x_of_types",
+                    "count": 300,
+                    "types": [
+                        "bio_dom",
+                        "bio_dom_big"
+                    ]
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 163,
+            "requirements": [
+                {
+                    "type": "n+=I",
+                    "count": 2
+                },
+                {
+                    "type": "n+=G",
+                    "count": 40000
+                },
+                {
+                    "type": "(n+=U(a,C[a.mesto]))"
+                },
+                {
+                    "type": "(o=!1)"
+                }
+            ]
+        },
+        {
+            "level": 164,
+            "requirements": [
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 30,
+                    "level": 140
+                },
+                {
+                    "type": "n+=H",
+                    "count": 50
+                },
+                {
+                    "type": "more_x_of_types",
+                    "count": 50,
+                    "types": [
+                        "uranium_plant"
+                    ]
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 165,
+            "requirements": [
+                {
+                    "type": "more_x_of_types",
+                    "count": 400,
+                    "types": [
+                        "windmill_2"
+                    ]
+                },
+                {
+                    "type": "n+=W",
+                    "count": 9
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 166,
+            "requirements": [
+                {
+                    "type": "xmegacities_of_level_y",
+                    "count": 5,
+                    "level": 145
+                },
+                {
+                    "type": "forest_income_x",
+                    "count": 1200000
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 167,
+            "requirements": [
+                {
+                    "type": "n+=G",
+                    "count": 45000
+                },
+                {
+                    "type": "place_xpavement_tiles",
+                    "count": 500
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 168,
+            "requirements": [
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 35,
+                    "level": 135
+                },
+                {
+                    "type": "n+=W",
+                    "count": 10
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 169,
+            "requirements": [
+                {
+                    "type": "n+=B",
+                    "count": 3500
+                },
+                {
+                    "type": "(n+=U(a,C[a.mesto]))"
+                },
+                {
+                    "type": "n+=V",
+                    "count": 75
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                },
+                {
+                    "type": "(o=!1)"
+                }
+            ]
+        },
+        {
+            "level": 170,
+            "requirements": [
+                {
+                    "type": "n+=H",
+                    "count": 70
+                },
+                {
+                    "type": "xmegacities_of_level_y",
+                    "count": 8,
+                    "level": 130
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 171,
+            "requirements": [
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 50,
+                    "level": 140
+                },
+                {
+                    "type": "n+=W",
+                    "count": 14
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 172,
+            "requirements": [
+                {
+                    "type": "more_x_of_types",
+                    "count": 500,
+                    "types": [
+                        "filter_array_1"
+                    ]
+                },
+                {
+                    "type": "n+=z",
+                    "count": 280
+                },
+                {
+                    "type": "xmegacities_of_level_y",
+                    "count": 4,
+                    "level": 160
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 173,
+            "requirements": [
+                {
+                    "type": "more_x_of_types",
+                    "count": 350,
+                    "types": [
+                        "bio_dom",
+                        "bio_dom_big"
+                    ]
+                },
+                {
+                    "type": "forest_income_x",
+                    "count": 1300000
+                },
+                {
+                    "type": "n+=W",
+                    "count": 18
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 174,
+            "requirements": [
+                {
+                    "type": "(n+=U(a,C[a.mesto]))"
+                },
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 20,
+                    "level": 150
+                },
+                {
+                    "type": "n+=G",
+                    "count": 50000
+                },
+                {
+                    "type": "n+=z",
+                    "count": 300
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                },
+                {
+                    "type": "(o=!1)"
+                }
+            ]
+        },
+        {
+            "level": 175,
+            "requirements": [
+                {
+                    "type": "more_x_of_types",
+                    "count": 500,
+                    "types": [
+                        "titan_factory",
+                        "titan_factory_gem"
+                    ]
+                },
+                {
+                    "type": "n+=H",
+                    "count": 150
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                },
+                {
+                    "type": "(o=!1)"
+                }
+            ]
+        },
+        {
+            "level": 176,
+            "requirements": [
+                {
+                    "type": "(n+=K(a,`chips`,35000000000))"
+                },
+                {
+                    "type": "xmegacities_of_level_y",
+                    "count": 7,
+                    "level": 165
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                },
+                {
+                    "type": "n+=la",
+                    "count": 15
+                }
+            ]
+        },
+        {
+            "level": 177,
+            "requirements": [
+                {
+                    "type": "ypercent_of_road_at_level_x",
+                    "count": 7,
+                    "level": 10
+                },
+                {
+                    "type": "more_x_of_types",
+                    "count": 750,
+                    "types": [
+                        "titan_factory",
+                        "titan_factory_gem"
+                    ]
+                },
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 130,
+                    "level": 130
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                },
+                {
+                    "type": "(o=!1)"
+                }
+            ]
+        },
+        {
+            "level": 178,
+            "requirements": [
+                {
+                    "type": "(n+=K(a,`steel`,28000000000))"
+                },
+                {
+                    "type": "n+=W",
+                    "count": 24
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 179,
+            "requirements": [
+                {
+                    "type": "(n+=K(a,`titanium`,70000000))"
+                },
+                {
+                    "type": "(n+=U(a,C[a.mesto]))"
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                },
+                {
+                    "type": "(o=!1)"
+                }
+            ]
+        },
+        {
+            "level": 180,
+            "requirements": [
+                {
+                    "type": "ypercent_of_road_at_level_x",
+                    "count": 7,
+                    "level": 20
+                },
+                {
+                    "type": "place_xpavement_tiles",
+                    "count": 850
+                },
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 90,
+                    "level": 155
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                },
+                {
+                    "type": "(o=!1)"
+                }
+            ]
+        },
+        {
+            "level": 181,
+            "requirements": [
+                {
+                    "type": "(n+=K(a,`rocks`,40000000000))"
+                },
+                {
+                    "type": "xmegacities_of_level_y",
+                    "count": 4,
+                    "level": 175
+                },
+                {
+                    "type": "n+=B",
+                    "count": 3500
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                },
+                {
+                    "type": "(o=!1)"
+                }
+            ]
+        },
+        {
+            "level": 182,
+            "requirements": [
+                {
+                    "type": "(n+=K(a,`uranium_battery`,220000000))"
+                },
+                {
+                    "type": "n+=B",
+                    "count": 3500
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 183,
+            "requirements": [
+                {
+                    "type": "have_x_passenger_trains",
+                    "count": 8
+                },
+                {
+                    "type": "n+=B",
+                    "count": 3500
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 184,
+            "requirements": [
+                {
+                    "type": "have_x_passenger_trains",
+                    "count": 8
+                },
+                {
+                    "type": "place_xpavement_tiles",
+                    "count": 1000
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                },
+                {
+                    "type": "(o=!1)"
+                }
+            ]
+        },
+        {
+            "level": 185,
+            "requirements": [
+                {
+                    "type": "more_x_of_types",
+                    "count": 1000,
+                    "types": [
+                        "titan_factory",
+                        "titan_factory_gem"
+                    ]
+                },
+                {
+                    "type": "forest_income_x",
+                    "count": 1400000
+                },
+                {
+                    "type": "(n+=K(a,`chips`,125000000000))"
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 186,
+            "requirements": [
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 400,
+                    "level": 110
+                },
+                {
+                    "type": "n+=W",
+                    "count": 30
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 187,
+            "requirements": [
+                {
+                    "type": "xmegacities_of_level_y",
+                    "count": 3,
+                    "level": 185
+                },
+                {
+                    "type": "(n+=U(a,C[a.mesto]))"
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                },
+                {
+                    "type": "(o=!1)"
+                }
+            ]
+        },
+        {
+            "level": 188,
+            "requirements": [
+                {
+                    "type": "restore_xtiles",
+                    "count": 350000
+                },
+                {
+                    "type": "(n+=K(a,`uranium_battery`,350000000))"
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                },
+                {
+                    "type": "(o=!1)"
+                }
+            ]
+        },
+        {
+            "level": 189,
+            "requirements": [
+                {
+                    "type": "n+=V",
+                    "count": 80
+                },
+                {
+                    "type": "(n+=U(a,C[a.mesto]))"
+                },
+                {
+                    "type": "more_x_of_types",
+                    "count": 1200,
+                    "types": [
+                        "titan_factory",
+                        "titan_factory_gem"
+                    ]
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                },
+                {
+                    "type": "(o=!1)"
+                }
+            ]
+        },
+        {
+            "level": 190,
+            "requirements": [
+                {
+                    "type": "ypercent_of_road_at_level_x",
+                    "count": 7,
+                    "level": 35
+                },
+                {
+                    "type": "(n+=K(a,`titanium`,100000000))"
+                },
+                {
+                    "type": "n+=_a",
+                    "count": 15
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                },
+                {
+                    "type": "(o=!1)"
+                }
+            ]
+        },
+        {
+            "level": 191,
+            "requirements": [
+                {
+                    "type": "ypercent_of_road_at_level_x",
+                    "count": 7,
+                    "level": 40
+                },
+                {
+                    "type": "connect_xmegacities_to_main_settlement",
+                    "count": 5
+                },
+                {
+                    "type": "n+=q",
+                    "count": 20
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                },
+                {
+                    "type": "(o=!1)"
+                }
+            ]
+        },
+        {
+            "level": 192,
+            "requirements": [
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 200,
+                    "level": 140
+                },
+                {
+                    "type": "n+=W",
+                    "count": 45
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 193,
+            "requirements": [
+                {
+                    "type": "place_xpavement_tiles",
+                    "count": 1200
+                },
+                {
+                    "type": "(n+=K(a,`uranium_battery`,600000000))"
+                },
+                {
+                    "type": "n+=q",
+                    "count": 60
+                },
+                {
+                    "type": "(o=!1)"
+                }
+            ]
+        },
+        {
+            "level": 194,
+            "requirements": [
+                {
+                    "type": "restore_xtiles",
+                    "count": 400000
+                },
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 500,
+                    "level": 110
+                },
+                {
+                    "type": "(n+=K(a,`titanium`,120000000))"
+                }
+            ]
+        },
+        {
+            "level": 195,
+            "requirements": [
+                {
+                    "type": "ypercent_of_road_at_level_x",
+                    "count": 7,
+                    "level": 50
+                },
+                {
+                    "type": "connect_xmegacities_to_main_settlement",
+                    "count": 6
+                },
+                {
+                    "type": "n+=q",
+                    "count": 120
+                },
+                {
+                    "type": "(o=!1)"
+                }
+            ]
+        },
+        {
+            "level": 196,
+            "requirements": [
+                {
+                    "type": "(n+=U(a,C[a.mesto]))"
+                },
+                {
+                    "type": "restore_xtiles",
+                    "count": 420000
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                },
+                {
+                    "type": "(o=!1)"
+                }
+            ]
+        },
+        {
+            "level": 197,
+            "requirements": [
+                {
+                    "type": "(n+=K(a,`red_chips`,1000000))"
+                },
+                {
+                    "type": "n+=q",
+                    "count": 250
+                },
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 100,
+                    "level": 160
+                },
+                {
+                    "type": "(o=!1)"
+                }
+            ]
+        },
+        {
+            "level": 198,
+            "requirements": [
+                {
+                    "type": "(n+=K(a,`uranium_battery`,1250000000))"
+                },
+                {
+                    "type": "n+=q",
+                    "count": 350
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 199,
+            "requirements": [
+                {
+                    "type": "ypercent_of_road_at_level_x",
+                    "count": 7,
+                    "level": 60
+                },
+                {
+                    "type": "connect_xmegacities_to_main_settlement",
+                    "count": 7
+                },
+                {
+                    "type": "n+=_a",
+                    "count": 25
+                },
+                {
+                    "type": "(o=!1)"
+                }
+            ]
+        },
+        {
+            "level": 200,
+            "requirements": [
+                {
+                    "type": "restore_xtiles",
+                    "count": 450000
+                },
+                {
+                    "type": "n+=q",
+                    "count": 500
+                },
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 220,
+                    "level": 150
+                },
+                {
+                    "type": "(o=!1)"
+                }
+            ]
+        },
+        {
+            "level": 201,
+            "requirements": [
+                {
+                    "type": "more_x_of_types",
+                    "count": 5,
+                    "types": [
+                        "chip_factory_red"
+                    ]
+                },
+                {
+                    "type": "n+=V",
+                    "count": 110
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                },
+                {
+                    "type": "(o=!1)"
+                }
+            ]
+        },
+        {
+            "level": 202,
+            "requirements": [
+                {
+                    "type": "ypercent_of_road_at_level_x",
+                    "count": 7,
+                    "level": 70
+                },
+                {
+                    "type": "connect_xmegacities_to_main_settlement",
+                    "count": 7
+                },
+                {
+                    "type": "forest_income_x",
+                    "count": 1700000
+                }
+            ]
+        },
+        {
+            "level": 203,
+            "requirements": [
+                {
+                    "type": "n+=q",
+                    "count": 750
+                },
+                {
+                    "type": "(n+=K(a,`titanium`,1250000000))"
+                },
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 15,
+                    "level": 200
+                },
+                {
+                    "type": "(o=!1)"
+                }
+            ]
+        },
+        {
+            "level": 204,
+            "requirements": [
+                {
+                    "type": "more_x_of_types",
+                    "count": 15,
+                    "types": [
+                        "chip_factory_red"
+                    ]
+                },
+                {
+                    "type": "restore_xtiles",
+                    "count": 470000
+                },
+                {
+                    "type": "(n+=U(a,C[a.mesto]))"
+                },
+                {
+                    "type": "(o=!1)"
+                }
+            ]
+        },
+        {
+            "level": 205,
+            "requirements": [
+                {
+                    "type": "n+=q",
+                    "count": 1000
+                },
+                {
+                    "type": "ypercent_of_road_at_level_x",
+                    "count": 7,
+                    "level": 80
+                },
+                {
+                    "type": "connect_xmegacities_to_main_settlement",
+                    "count": 7
+                },
+                {
+                    "type": "(o=!1)"
+                }
+            ]
+        },
+        {
+            "level": 206,
+            "requirements": [
+                {
+                    "type": "forest_income_x",
+                    "count": 1850000
+                },
+                {
+                    "type": "more_x_of_types",
+                    "count": 20,
+                    "types": [
+                        "titan_factory_rift"
+                    ]
+                },
+                {
+                    "type": "n+=I",
+                    "count": 2
+                }
+            ]
+        },
+        {
+            "level": 207,
+            "requirements": [
+                {
+                    "type": "(n+=K(a,`uranium_battery`,1900000000))"
+                },
+                {
+                    "type": "n+=V",
+                    "count": 115
+                },
+                {
+                    "type": "restore_xtiles",
+                    "count": 490000
+                },
+                {
+                    "type": "(o=!1)"
+                }
+            ]
+        },
+        {
+            "level": 208,
+            "requirements": [
+                {
+                    "type": "more_x_of_types",
+                    "count": 40,
+                    "types": [
+                        "chip_factory_red"
+                    ]
+                },
+                {
+                    "type": "xtowns_of_level_y",
+                    "count": 350,
+                    "level": 145
+                },
+                {
+                    "type": "ypercent_of_road_at_level_x",
+                    "count": 7,
+                    "level": 90
+                },
+                {
+                    "type": "(o=!1)"
+                }
+            ]
+        },
+        {
+            "level": 209,
+            "requirements": [
+                {
+                    "type": "(n+=K(a,`red_chips`,100000000))"
+                },
+                {
+                    "type": "n+=q",
+                    "count": 1500
+                },
+                {
+                    "type": "n+=_a",
+                    "count": 40
+                },
+                {
+                    "type": "(o=!1)"
+                }
+            ]
+        }
+    ]
+}

@@ -2,6 +2,157 @@
   padding: 32px 24px 64px;
 }
 
+.todo-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.todo-page-header p {
+  color: var(--text);
+}
+
+.tutorial-open,
+.tutorial-secondary {
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg);
+  color: var(--text-h);
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.tutorial-open:hover,
+.tutorial-secondary:hover {
+  border-color: var(--accent);
+}
+
+.tutorial-dialog {
+  width: min(720px, calc(100% - 32px));
+  max-width: none;
+  max-height: min(820px, calc(100dvh - 32px));
+  padding: 0;
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+  color: var(--text);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
+}
+
+.tutorial-dialog::backdrop {
+  background: rgba(12, 10, 16, 0.76);
+}
+
+.tutorial-content {
+  display: flex;
+  min-height: min(540px, calc(100dvh - 64px));
+  flex-direction: column;
+  padding: clamp(24px, 6vw, 56px);
+}
+
+.tutorial-progress {
+  margin-bottom: 16px;
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.tutorial-content h2 {
+  margin-bottom: 16px;
+  font-size: clamp(24px, 5vw, 36px);
+}
+
+.tutorial-content > p:not(.tutorial-progress) {
+  font-size: clamp(16px, 2.6vw, 20px);
+  line-height: 1.6;
+}
+
+.tutorial-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.tutorial-field {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 6px;
+  color: var(--text-h);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.tutorial-field input {
+  width: 100%;
+  min-height: 42px;
+  box-sizing: border-box;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg);
+  color: var(--text-h);
+  font: inherit;
+  font-weight: 400;
+}
+
+.tutorial-field input:focus-visible,
+.tutorial-town-levels input:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.tutorial-town-levels {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+.tutorial-town-levels > p:first-child {
+  margin-bottom: 6px;
+  color: var(--text-h);
+  font-weight: 600;
+}
+
+.tutorial-town-levels-hint {
+  color: var(--text);
+  font-size: 13px;
+}
+
+.tutorial-town-levels .town-header,
+.tutorial-town-levels .town-row {
+  grid-template-columns: minmax(64px, 1fr) minmax(76px, 1fr) 32px;
+}
+
+.tutorial-actions,
+.tutorial-navigation {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tutorial-actions {
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: auto;
+  padding-top: 32px;
+}
+
+.tutorial-actions .add-town {
+  margin-top: 0;
+}
+
+.tutorial-dialog button:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
 .todo-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -331,6 +482,42 @@
 @media (max-width: 560px) {
   .todo-mega-lvl {
     padding-inline: 16px;
+  }
+
+  .todo-page-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .tutorial-dialog {
+    width: calc(100% - 16px);
+    max-height: calc(100dvh - 16px);
+    border-radius: 8px;
+  }
+
+  .tutorial-content {
+    min-height: calc(100dvh - 48px);
+    padding: 24px 20px;
+  }
+
+  .tutorial-fields {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .tutorial-town-levels {
+    margin-top: 20px;
+    padding-top: 16px;
+  }
+
+  .tutorial-actions {
+    align-items: stretch;
+    flex-direction: column-reverse;
+  }
+
+  .tutorial-navigation {
+    justify-content: flex-end;
   }
 
   .todo-section {

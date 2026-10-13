@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { type ReactNode, useEffect, useMemo, useRef, useState } from 'react'
 import './TodoMegaLvl.css'
 
 type BuildingType =
@@ -69,6 +69,47 @@ const STORAGE_KEYS = {
   tasks: 'mega-lvl-tasks',
   showCompleted: 'mega-lvl-show-completed',
   currentLevel: 'mega-lvl-current-level',
+  colonyCount: 'mega-lvl-colony-count',
+  totalColonyLevels: 'mega-lvl-total-colony-levels',
+}
+
+const TUTORIAL_COOKIE = 'todo-mega-lvl-tutorial-completed'
+const TUTORIAL_STEPS = [
+  {
+    title: 'Getting started',
+    description:
+      "Todo Mega Levels helps you track your base's progress and generate a checklist for future upgrades. I'll ask you for the current state of your base; your entries are saved in this browser and used to work out what remains.",
+  },
+  {
+    title: 'Main settlement level',
+    description:
+      'What is your actual level? Enter the current level of your main settlement in the Current Level field.',
+  },
+  {
+    title: 'Your colonies',
+    description:
+      'Enter your colony count, their combined levels, the number of mega settlements, and how many are connected to the main settlement. Add colony levels and quantities in the breakdown for level-specific requirements.',
+  },
+  {
+    title: 'Restoration',
+    description:
+      'Record your restoration progress: total restored tiles, total water tiles, total forest income, and total clear-water (deep-water) tiles. Enter each value in Required Resources.',
+  },
+  {
+    title: 'Extra progress',
+    description:
+      'Finally, record extra counters such as how many bombs have exploded and how many pavement tiles you have placed. These values are also available in Required Resources.',
+  },
+]
+
+function hasCompletedTutorial(): boolean {
+  return document.cookie
+    .split(';')
+    .some((cookie) => cookie.trim() === `${TUTORIAL_COOKIE}=true`)
+}
+
+function saveTutorialCompletion(): void {
+  document.cookie = `${TUTORIAL_COOKIE}=true; max-age=31536000; path=/; samesite=lax`
 }
 
 function getBuildingType(requirement: Requirement): string | null {
@@ -146,9 +187,35 @@ const TodoMegaLvl = () => {
   const [currentLevel, setCurrentLevel] = useState(
     Number(localStorage.getItem(STORAGE_KEYS.currentLevel) || 0)
   )
+  const [colonyCount, setColonyCount] = useState(
+    Number(localStorage.getItem(STORAGE_KEYS.colonyCount) || 0)
+  )
+  const [totalColonyLevels, setTotalColonyLevels] = useState(
+    Number(localStorage.getItem(STORAGE_KEYS.totalColonyLevels) || 0)
+  )
+  const [tutorialOpen, setTutorialOpen] = useState(() => !hasCompletedTutorial())
+  const [tutorialStep, setTutorialStep] = useState(0)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [reload, setReload] = useState(0)
+  const tutorialDialogRef = useRef<HTMLDialogElement>(null)
+  const tutorialTitleRef = useRef<HTMLHeadingElement>(null)
+  const tutorialTriggerRef = useRef<HTMLButtonElement>(null)
+  const hasOpenedTutorial = useRef(false)
+
+  useEffect(() => {
+    const dialog = tutorialDialogRef.current
+    if (!dialog) return
+
+    if (tutorialOpen && !dialog.open) {
+      dialog.showModal()
+      tutorialTitleRef.current?.focus()
+      hasOpenedTutorial.current = true
+    } else if (!tutorialOpen && dialog.open) {
+      dialog.close()
+      if (hasOpenedTutorial.current) tutorialTriggerRef.current?.focus()
+    }
+  }, [tutorialOpen, loading, error])
 
   useEffect(() => {
     let cancelled = false
@@ -257,6 +324,17 @@ const TodoMegaLvl = () => {
   useEffect(() => {
     localStorage.setItem(STORAGE_KEYS.currentLevel, String(currentLevel))
   }, [currentLevel])
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEYS.colonyCount, String(colonyCount))
+  }, [colonyCount])
+
+  useEffect(() => {
+    localStorage.setItem(
+      STORAGE_KEYS.totalColonyLevels,
+      String(totalColonyLevels)
+    )
+  }, [totalColonyLevels])
 
   const buildingTypes = useMemo(() => {
     const types = new Set<string>()
@@ -386,6 +464,33 @@ const TodoMegaLvl = () => {
 
   const generatedText = generateTexts()
 
+  function renderTutorialResourceField(
+    resourceType: string,
+    label: string
+  ): ReactNode {
+    const inputId = `tutorial-${resourceType}`
+    const storageKey = `${resourceType}|`
+
+    return (
+      <label className="tutorial-field" htmlFor={inputId} key={resourceType}>
+        <span>{label}</span>
+        <input
+          id={inputId}
+          type="number"
+          min="0"
+          step="1"
+          value={resources[storageKey] ?? 0}
+          onChange={(event) =>
+            setResources((previous) => ({
+              ...previous,
+              [storageKey]: Number(event.target.value) || 0,
+            }))
+          }
+        />
+      </label>
+    )
+  }
+
   if (loading) {
     return <div className="todo-loading">Loading Todo Mega Levels…</div>
   }
@@ -408,6 +513,246 @@ const TodoMegaLvl = () => {
 
   return (
     <main className="todo-mega-lvl">
+      <div className="todo-page-header">
+        <p>Enter your base's current progress to generate upgrade tasks.</p>
+        <button
+          ref={tutorialTriggerRef}
+          type="button"
+          className="tutorial-open"
+          onClick={() => {
+            setTutorialStep(0)
+            setTutorialOpen(true)
+          }}
+        >
+          How to use this page
+        </button>
+      </div>
+      <dialog
+        ref={tutorialDialogRef}
+        className="tutorial-dialog"
+        aria-labelledby="tutorial-title"
+        aria-describedby="tutorial-description"
+        onCancel={(event) => {
+          event.preventDefault()
+          setTutorialOpen(false)
+        }}
+      >
+        <div className="tutorial-content">
+          <p className="tutorial-progress" aria-live="polite">
+            Step {tutorialStep + 1} of {TUTORIAL_STEPS.length}
+          </p>
+          <h2 id="tutorial-title" ref={tutorialTitleRef} tabIndex={-1}>
+            {TUTORIAL_STEPS[tutorialStep].title}
+          </h2>
+          <p id="tutorial-description">
+            {TUTORIAL_STEPS[tutorialStep].description}
+          </p>
+          {tutorialStep === 1 && (
+            <div className="tutorial-fields">
+              <label className="tutorial-field" htmlFor="tutorial-current-level">
+                <span>Main settlement level</span>
+                <input
+                  id="tutorial-current-level"
+                  type="number"
+                  min="0"
+                  step="1"
+                  value={currentLevel}
+                  onChange={(event) =>
+                    setCurrentLevel(Number(event.target.value) || 0)
+                  }
+                />
+              </label>
+            </div>
+          )}
+          {tutorialStep === 2 && (
+            <>
+              <div className="tutorial-fields">
+                <label className="tutorial-field" htmlFor="tutorial-colony-count">
+                  <span>Number of colonies</span>
+                  <input
+                    id="tutorial-colony-count"
+                    type="number"
+                    min="0"
+                    step="1"
+                    value={colonyCount}
+                    onChange={(event) =>
+                      setColonyCount(Number(event.target.value) || 0)
+                    }
+                  />
+                </label>
+                <label
+                  className="tutorial-field"
+                  htmlFor="tutorial-total-colony-levels"
+                >
+                  <span>Total levels across all colonies</span>
+                  <input
+                    id="tutorial-total-colony-levels"
+                    type="number"
+                    min="0"
+                    step="1"
+                    value={totalColonyLevels}
+                    onChange={(event) =>
+                      setTotalColonyLevels(Number(event.target.value) || 0)
+                    }
+                  />
+                </label>
+                {renderTutorialResourceField(
+                  'xmegacities',
+                  'Number of mega settlements'
+                )}
+                {renderTutorialResourceField(
+                  'connect_xmegacities_to_main_settlement',
+                  'Mega settlements connected to the main settlement'
+                )}
+              </div>
+              <div className="tutorial-town-levels">
+                <p>
+                  Colony levels for level-specific checklist requirements
+                </p>
+                <p className="tutorial-town-levels-hint">
+                  Enter each level and how many colonies have that level. These
+                  details are used for the level-specific town requirements.
+                </p>
+                <div className="town-header">
+                  <span>Level</span>
+                  <span>Quantity</span>
+                  <span />
+                </div>
+                {towns.map((town, index) => (
+                  <div key={index} className="town-row">
+                    <input
+                      type="number"
+                      min="1"
+                      aria-label={`Colony level ${index + 1}`}
+                      value={town.level}
+                      onChange={(event) =>
+                        setTowns((previous) =>
+                          previous.map((item, townIndex) =>
+                            townIndex === index
+                              ? {
+                                  ...item,
+                                  level: Number(event.target.value) || 0,
+                                }
+                              : item
+                          )
+                        )
+                      }
+                    />
+                    <input
+                      type="number"
+                      min="0"
+                      aria-label={`Colonies at level ${index + 1}`}
+                      value={town.count}
+                      onChange={(event) =>
+                        setTowns((previous) =>
+                          previous.map((item, townIndex) =>
+                            townIndex === index
+                              ? {
+                                  ...item,
+                                  count: Number(event.target.value) || 0,
+                                }
+                              : item
+                          )
+                        )
+                      }
+                    />
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setTowns((previous) =>
+                          previous.filter((_, townIndex) => townIndex !== index)
+                        )
+                      }
+                      className="delete-town"
+                      aria-label={`Remove colony level ${index + 1}`}
+                    >
+                      ×
+                    </button>
+                  </div>
+                ))}
+                <button
+                  type="button"
+                  onClick={() =>
+                    setTowns((previous) => [
+                      ...previous,
+                      { level: 1, count: 0 },
+                    ])
+                  }
+                  className="add-town"
+                >
+                  + Add colony level
+                </button>
+              </div>
+            </>
+          )}
+          {tutorialStep === 3 && (
+            <div className="tutorial-fields">
+              {renderTutorialResourceField(
+                'restore_xtiles',
+                'Total restored tiles'
+              )}
+              {renderTutorialResourceField('xwater_tiles', 'Total water tiles')}
+              {renderTutorialResourceField(
+                'forest_income_x',
+                'Total forest income'
+              )}
+              {renderTutorialResourceField(
+                'xdeep_water_tiles',
+                'Total clear-water (deep-water) tiles'
+              )}
+            </div>
+          )}
+          {tutorialStep === 4 && (
+            <div className="tutorial-fields">
+              {renderTutorialResourceField('use_x_bombs', 'Bombs exploded')}
+              {renderTutorialResourceField(
+                'place_xpavement_tiles',
+                'Pavement tiles placed'
+              )}
+            </div>
+          )}
+          <div className="tutorial-actions">
+            <button
+              type="button"
+              className="tutorial-secondary"
+              onClick={() => setTutorialOpen(false)}
+            >
+              Close for now
+            </button>
+            <div className="tutorial-navigation">
+              {tutorialStep > 0 && (
+                <button
+                  type="button"
+                  className="tutorial-secondary"
+                  onClick={() => setTutorialStep((step) => step - 1)}
+                >
+                  Back
+                </button>
+              )}
+              {tutorialStep < TUTORIAL_STEPS.length - 1 ? (
+                <button
+                  type="button"
+                  className="add-town"
+                  onClick={() => setTutorialStep((step) => step + 1)}
+                >
+                  Next
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  className="add-town"
+                  onClick={() => {
+                    saveTutorialCompletion()
+                    setTutorialOpen(false)
+                  }}
+                >
+                  Finish tutorial
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+      </dialog>
       <div className="todo-layout">
         <div>
           <section className="todo-section">

@@ -40,6 +40,18 @@ function Home() {
             Track requirements and generate tasks
           </span>
         </a>
+        <a className="home-tool" href="#/RequirementsDisplay">
+          <span className="home-tool-title">Upgrade requirements</span>
+          <span className="home-tool-subtitle">
+            All conditions to improve levels
+          </span>
+        </a>
+        <a className="home-tool" href="#/TodoMegaLvl">
+          <span className="home-tool-title">Todo Mega Levels</span>
+          <span className="home-tool-subtitle">
+            Track requirements and generate tasks
+          </span>
+        </a>
       </section>
     </main>
   )

@@ -1,574 +1,675 @@
-import React, { useState, useEffect } from "react";
-import "./TodoMegaLvl.css";
+import { useEffect, useMemo, useState } from 'react'
+import './TodoMegaLvl.css'
+
+type BuildingType =
+  | string
+  | { id?: string; name?: string; type?: string; unlock_level?: number }
 
 interface Requirement {
-  type: string;
-  count?: number;
-  level?: number;
-  types?: string[];
-  upgradeLevel?: number;
+  type: string
+  count?: number
+  level?: number
+  types?: BuildingType[]
+}
+
+interface RequirementWithUpgrade extends Requirement {
+  upgradeLevel: number
 }
 
 interface LevelData {
-  level: number;
-  requirements: Requirement[];
+  level: number
+  requirements: Requirement[]
 }
 
-interface Data {
-  data: LevelData[];
+interface RequirementsData {
+  data: LevelData[]
 }
 
 interface Transformation {
-  id: string;
-  todo_string: string;
+  id: string
+  todo_string: string
 }
 
-interface TransformationMap {
-  [key: string]: Transformation;
+interface TransformationsData {
+  transformation: Transformation[]
+}
+
+interface TransformationUnlock {
+  id: string
+  unlock_level?: number
+  types?: BuildingType[]
+}
+
+interface TransformationUnlocksData {
+  unlock: TransformationUnlock[]
 }
 
 interface Town {
-  level: number;
-  count: number;
+  level: number
+  count: number
 }
 
 const RESOURCES_TO_TRACK = [
-  "xmegacities",
-  "connect_xmegacities_to_main_settlement",
-  "xdeep_water_tiles",
-  "forest_income_x",
-  "restore_xtiles",
-  "xwater_tiles",
-  "place_xpavement_tiles",
-  "use_x_bombs",
-];
+  'xmegacities',
+  'connect_xmegacities_to_main_settlement',
+  'xdeep_water_tiles',
+  'forest_income_x',
+  'restore_xtiles',
+  'xwater_tiles',
+  'place_xpavement_tiles',
+  'use_x_bombs',
+]
 
-const defaultValue = (item: string) => {
-  if (item === "xmegacities|") {
-    return 1;
+const ROAD_REQUIREMENT_TYPE = 'ypercent_of_road_at_level_x'
+
+const STORAGE_KEYS = {
+  resources: 'mega-lvl-resources',
+  buildings: 'mega-lvl-buildings',
+  towns: 'mega-lvl-towns',
+  tasks: 'mega-lvl-tasks',
+  showCompleted: 'mega-lvl-show-completed',
+  currentLevel: 'mega-lvl-current-level',
+}
+
+function getBuildingType(requirement: Requirement): string | null {
+  if (
+    requirement.type !== 'more_x_of_types' &&
+    requirement.type !== 'less_x_of_types'
+  ) {
+    return null
   }
-  return 0;
-};
 
-const buildRequirements = (data: any[], upgradeLevel: number) => {
-  if (!data) return [];
-  const reqs: (Requirement & { upgradeLevel: number })[] = [];
-  for (const upgrade of data) {
-    for (const req of upgrade.requirements) {
-      if ((upgrade.level ?? Infinity) <= upgradeLevel) continue;
-      reqs.push({ ...req, upgradeLevel: upgrade.level });
-    }
+  const firstType = requirement.types?.[0]
+  if (typeof firstType === 'string') return firstType
+  if (firstType && typeof firstType === 'object') {
+    return firstType.name ?? firstType.id ?? firstType.type ?? null
   }
-  return reqs;
-};
+  return null
+}
 
-const TodoMegaLvl: React.FC = () => {
-  const [data, setData] = useState<LevelData[] | null>(null);
-  const [transformations, setTransformations] = useState<TransformationMap>({});
+function buildRequirements(levels: LevelData[]): RequirementWithUpgrade[] {
+  return levels.flatMap((upgrade) =>
+    upgrade.requirements.map((requirement) => ({
+      ...requirement,
+      upgradeLevel: upgrade.level,
+    }))
+  )
+}
+
+function getFilteredLevels(levels: LevelData[]): LevelData[] {
+  const params = new URLSearchParams(window.location.search)
+  const exactLevel = params.get('level')
+  const minLevel = params.get('min')
+  const maxLevel = params.get('max')
+
+  return levels.filter((level) => {
+    if (exactLevel !== null && level.level !== Number(exactLevel)) return false
+    if (minLevel !== null && level.level < Number(minLevel)) return false
+    if (maxLevel !== null && level.level > Number(maxLevel)) return false
+    return true
+  })
+}
+
+async function fetchJson<T>(path: string): Promise<T> {
+  const response = await fetch(path)
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status}: Unable to load ${path}`)
+  }
+  return response.json() as Promise<T>
+}
+
+const TodoMegaLvl = () => {
+  const [allRequirements, setAllRequirements] = useState<
+    RequirementWithUpgrade[]
+  >([])
+  const [transformations, setTransformations] = useState<
+    Record<string, Transformation>
+  >({})
   const [transformationUnlocks, setTransformationUnlocks] = useState<
     Record<string, number>
-  >({});
-  const [allRequirements, setAllRequirements] = useState<
-    (Requirement & { upgradeLevel: number })[]
-  >([]);
-
+  >({})
   const [resources, setResources] = useState<Record<string, number>>(() =>
-    JSON.parse(localStorage.getItem("mega-lvl-resources") || "{}"),
-  );
+    JSON.parse(localStorage.getItem(STORAGE_KEYS.resources) || '{}')
+  )
   const [buildings, setBuildings] = useState<Record<string, number>>(() =>
-    JSON.parse(localStorage.getItem("mega-lvl-buildings") || "{}"),
-  );
+    JSON.parse(localStorage.getItem(STORAGE_KEYS.buildings) || '{}')
+  )
   const [towns, setTowns] = useState<Town[]>(() =>
-    JSON.parse(localStorage.getItem("mega-lvl-towns") || "[]"),
-  );
+    JSON.parse(localStorage.getItem(STORAGE_KEYS.towns) || '[]')
+  )
   const [completedTasks, setCompletedTasks] = useState<Record<string, boolean>>(
-    () => JSON.parse(localStorage.getItem("mega-lvl-tasks") || "{}"),
-  );
-  const [showCompleted, setShowCompleted] = useState<boolean>(
-    localStorage.getItem("mega-lvl-show-completed") === "true",
-  );
-  const [currentLevel, setCurrentLevel] = useState<number>(
-    Number(localStorage.getItem("mega-lvl-current-level") || 0),
-  );
-  const [generatedText, setGeneratedText] = useState<string>("");
-  const [loading, setLoading] = useState(true);
+    () => JSON.parse(localStorage.getItem(STORAGE_KEYS.tasks) || '{}')
+  )
+  const [showCompleted, setShowCompleted] = useState(
+    localStorage.getItem(STORAGE_KEYS.showCompleted) === 'true'
+  )
+  const [currentLevel, setCurrentLevel] = useState(
+    Number(localStorage.getItem(STORAGE_KEYS.currentLevel) || 0)
+  )
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+  const [reload, setReload] = useState(0)
 
-  // Load data on mount
   useEffect(() => {
-    const loadData = async () => {
+    let cancelled = false
+
+    async function loadData() {
+      setLoading(true)
+      setError(null)
+
       try {
-        const [dataRes, transformRes, unlockRes] = await Promise.all([
-          fetch("/mega-lvl-update.json"),
-          fetch("/id_transformation_table.json"),
-          fetch("/id_transformation_unlock.json"),
-        ]);
+        const [requirementsData, transformationsData, unlocksData] =
+          await Promise.all([
+            fetchJson<RequirementsData>('/mega-lvl-update.json'),
+            fetchJson<TransformationsData>('/id_transformation_table.json'),
+            fetchJson<TransformationUnlocksData>(
+              '/id_transformation_unlock.json'
+            ),
+          ])
 
-        const dataJson = await dataRes.json();
-        const transformJson = await transformRes.json();
-        const unlockJson = await unlockRes.json();
-
-        setData(dataJson.data);
-
-        // Build transformations map
-        const transformMap: TransformationMap = {};
-        for (const t of transformJson.transformation) {
-          transformMap[t.id] = t;
+        if (
+          !Array.isArray(requirementsData.data) ||
+          !Array.isArray(transformationsData.transformation) ||
+          !Array.isArray(unlocksData.unlock)
+        ) {
+          throw new Error('The helper data files have an invalid format.')
         }
-        setTransformations(transformMap);
 
-        // Build unlock levels
-        const unlocks: Record<string, number> = {};
-        for (const u of unlockJson.unlock) {
-          if (u.unlock_level !== undefined) {
-            unlocks[u.id] = Number(u.unlock_level);
+        const transformationMap = Object.fromEntries(
+          transformationsData.transformation.map((transformation) => [
+            transformation.id,
+            transformation,
+          ])
+        )
+        const unlockMap: Record<string, number> = {}
+
+        for (const unlock of unlocksData.unlock) {
+          if (unlock.unlock_level !== undefined) {
+            unlockMap[unlock.id] = Number(unlock.unlock_level)
           }
-          if (u.id === "more_x_of_types" && Array.isArray(u.types)) {
-            for (const type of u.types) {
+
+          if (unlock.id === 'more_x_of_types' && Array.isArray(unlock.types)) {
+            for (const type of unlock.types) {
               const typeId =
-                typeof type === "string"
+                typeof type === 'string'
                   ? type
-                  : type.id || type.name || type.type;
-              if (typeId && type.unlock_level !== undefined) {
-                unlocks["more_x_of_types|" + typeId] = Number(
-                  type.unlock_level,
-                );
-                unlocks["less_x_of_types|" + typeId] = Number(
-                  type.unlock_level,
-                );
+                  : (type.id ?? type.name ?? type.type)
+              if (
+                typeId &&
+                typeof type !== 'string' &&
+                type.unlock_level !== undefined
+              ) {
+                const level = Number(type.unlock_level)
+                unlockMap[`more_x_of_types|${typeId}`] = level
+                unlockMap[`less_x_of_types|${typeId}`] = level
               }
             }
           }
         }
-        setTransformationUnlocks(unlocks);
 
-        // Build all requirements
-        setAllRequirements(buildRequirements(dataJson.data, currentLevel ?? 0));
-
-        setLoading(false);
-      } catch (error) {
-        console.error("Error loading data:", error);
-        setLoading(false);
+        if (!cancelled) {
+          setAllRequirements(
+            buildRequirements(getFilteredLevels(requirementsData.data))
+          )
+          setTransformations(transformationMap)
+          setTransformationUnlocks(unlockMap)
+          setLoading(false)
+        }
+      } catch (loadError) {
+        console.error('Error loading Todo Mega Levels data:', loadError)
+        if (!cancelled) {
+          setError(
+            loadError instanceof Error
+              ? loadError.message
+              : 'Unknown error occurred'
+          )
+          setLoading(false)
+        }
       }
-    };
+    }
 
-    loadData();
-  }, []);
-
-  // Save to localStorage
-  useEffect(() => {
-    localStorage.setItem("mega-lvl-resources", JSON.stringify(resources));
-  }, [resources]);
+    void loadData()
+    return () => {
+      cancelled = true
+    }
+  }, [reload])
 
   useEffect(() => {
-    localStorage.setItem("mega-lvl-buildings", JSON.stringify(buildings));
-  }, [buildings]);
+    localStorage.setItem(STORAGE_KEYS.resources, JSON.stringify(resources))
+  }, [resources])
 
   useEffect(() => {
-    localStorage.setItem("mega-lvl-towns", JSON.stringify(towns));
-  }, [towns]);
+    localStorage.setItem(STORAGE_KEYS.buildings, JSON.stringify(buildings))
+  }, [buildings])
 
   useEffect(() => {
-    localStorage.setItem("mega-lvl-tasks", JSON.stringify(completedTasks));
-  }, [completedTasks]);
+    localStorage.setItem(STORAGE_KEYS.towns, JSON.stringify(towns))
+  }, [towns])
 
   useEffect(() => {
-    localStorage.setItem("mega-lvl-show-completed", String(showCompleted));
-  }, [showCompleted]);
+    localStorage.setItem(STORAGE_KEYS.tasks, JSON.stringify(completedTasks))
+  }, [completedTasks])
 
   useEffect(() => {
-    localStorage.setItem("mega-lvl-current-level", String(currentLevel));
-  }, [currentLevel]);
+    localStorage.setItem(STORAGE_KEYS.showCompleted, String(showCompleted))
+  }, [showCompleted])
 
-  // en: Update data according to the current level
   useEffect(() => {
-    updateDataAccordingToCurrentLevel();
-  }, [currentLevel]);
+    localStorage.setItem(STORAGE_KEYS.currentLevel, String(currentLevel))
+  }, [currentLevel])
 
-  // Regenerate texts when dependencies change
-  useEffect(() => {
-    generateTexts();
-  }, [
-    currentLevel,
-    resources,
-    buildings,
-    completedTasks,
-    transformationUnlocks,
-  ]);
+  const buildingTypes = useMemo(() => {
+    const types = new Set<string>()
+    for (const requirement of allRequirements) {
+      const type = getBuildingType(requirement)
+      if (type) types.add(type)
+    }
+    return [...types]
+  }, [allRequirements])
 
-  const updateDataAccordingToCurrentLevel = () => {
-    if (!data) return;
-    if (currentLevel === undefined) return;
-    if (currentLevel <= 0) return;
+  const missingTransformations = useMemo(() => {
+    const missing: Record<string, RequirementWithUpgrade[]> = {}
+    for (const requirement of allRequirements) {
+      if (transformations[requirement.type]) continue
+      ;(missing[requirement.type] ??= []).push(requirement)
+    }
+    return missing
+  }, [allRequirements, transformations])
 
-    const tmpData = allRequirements.filter(
-      (req) => req.upgradeLevel > currentLevel,
-    );
-    setAllRequirements(tmpData);
-  };
+  function getTownCount(minimumLevel: number): number {
+    return towns.reduce(
+      (total, town) => total + (town.level >= minimumLevel ? town.count : 0),
+      0
+    )
+  }
 
-  const getBuildingType = (req: Requirement): string | null => {
-    if (req.type !== "more_x_of_types" && req.type !== "less_x_of_types")
-      return null;
-    if (!Array.isArray(req.types) || req.types.length === 0) return null;
+  function getBuildingAmount(buildingType: string): number {
+    const defaultAmount = allRequirements.some(
+      (requirement) =>
+        requirement.type === 'less_x_of_types' &&
+        getBuildingType(requirement) === buildingType
+    )
+      ? 999999
+      : 0
+    return buildings[buildingType] ?? defaultAmount
+  }
 
-    const firstType = req.types[0];
-    if (typeof firstType === "string") return firstType;
-    if (typeof firstType === "object" && firstType !== null) {
+  function getCurrentAmount(requirement: Requirement): number {
+    if (!RESOURCES_TO_TRACK.includes(requirement.type)) return 0
+    const key = `${requirement.type}|${requirement.level ?? ''}`
+    return Number(resources[key] ?? 0)
+  }
+
+  function isRequirementUnlocked(requirement: Requirement): boolean {
+    const buildingType = getBuildingType(requirement)
+    const unlockLevel =
+      (buildingType
+        ? transformationUnlocks[`${requirement.type}|${buildingType}`]
+        : undefined) ?? transformationUnlocks[requirement.type]
+
+    return unlockLevel === undefined || currentLevel >= unlockLevel
+  }
+
+  function isRequirementComplete(
+    requirement: RequirementWithUpgrade,
+    index: number
+  ): boolean {
+    if (requirement.type === 'xtowns_of_level_y') {
       return (
-        (firstType as any).name ||
-        (firstType as any).id ||
-        (firstType as any).type ||
-        null
-      );
+        getTownCount(Number(requirement.level)) >= Number(requirement.count)
+      )
     }
-    return String(firstType);
-  };
 
-  const getBuildingTypes = (): string[] => {
-    const types = new Set<string>();
-    for (const req of allRequirements) {
-      const type = getBuildingType(req);
-      if (type) types.add(type);
+    if (
+      requirement.type === 'more_x_of_types' ||
+      requirement.type === 'less_x_of_types'
+    ) {
+      const buildingType = getBuildingType(requirement)
+      if (buildingType === null) return false
+
+      const amount = getBuildingAmount(buildingType)
+      const count = Number(requirement.count)
+      return requirement.type === 'more_x_of_types'
+        ? amount >= count
+        : amount <= count
     }
-    return Array.from(types);
-  };
 
-  const getTownCount = (minLevel: number): number => {
-    return towns.reduce((total, town) => {
-      if (town.level >= minLevel) return total + town.count;
-      return total;
-    }, 0);
-  };
+    if (RESOURCES_TO_TRACK.includes(requirement.type)) {
+      return getCurrentAmount(requirement) >= Number(requirement.count)
+    }
 
-  const getCurrentAmount = (req: Requirement): number => {
-    if (!RESOURCES_TO_TRACK.includes(req.type)) return 0;
-    const key = req.type + "|" + (req.level ?? "");
-    return Number(resources[key] || 0);
-  };
+    const taskKey = `${requirement.upgradeLevel}-${index}-${requirement.type}`
+    return completedTasks[taskKey] === true
+  }
 
-  const isRequirementUnlocked = (req: Requirement): boolean => {
-    let unlockLevel: number | undefined;
-    if (req.type === "more_x_of_types" || req.type === "less_x_of_types") {
-      const buildingType = getBuildingType(req);
-      if (buildingType) {
-        unlockLevel = transformationUnlocks[req.type + "|" + buildingType];
+  function generateTexts(): string {
+    const texts: string[] = []
+    let characterCount = 0
+
+    allRequirements.forEach((requirement, index) => {
+      if (
+        requirement.type === ROAD_REQUIREMENT_TYPE &&
+        requirement.upgradeLevel < currentLevel
+      ) {
+        return
       }
-    }
-    unlockLevel = unlockLevel || transformationUnlocks[req.type];
-    return unlockLevel === undefined || currentLevel >= unlockLevel;
-  };
+      if (requirement.upgradeLevel === currentLevel) return
+      if (isRequirementComplete(requirement, index)) return
 
-  const isRequirementComplete = (req: Requirement, index: number): boolean => {
-    if (req.type === "xtowns_of_level_y") {
-      return getTownCount(Number(req.level)) >= Number(req.count);
-    }
-    if (req.type === "more_x_of_types" || req.type === "less_x_of_types") {
-      const buildingType = getBuildingType(req);
-      if (!buildingType) return false;
-      const amount = buildings[buildingType] || 0;
-      const count = Number(req.count);
-      return req.type === "more_x_of_types" ? amount >= count : amount <= count;
-    }
-    if (RESOURCES_TO_TRACK.includes(req.type)) {
-      return getCurrentAmount(req) >= Number(req.count);
-    }
-    const taskKey = `${req.upgradeLevel}-${index}-${req.type}`;
-    return completedTasks[taskKey] === true;
-  };
+      const transformation = transformations[requirement.type]
+      if (!transformation || !isRequirementUnlocked(requirement)) return
 
-  const toShortString = (num: number): string => {
-    if (num >= 1000) return (num / 1000).toFixed(0) + "k";
-    return num.toString();
-  };
+      const toShortString = (value: number) =>
+        value >= 1000 ? `${(value / 1000).toFixed(0)}k` : value.toString()
+      const count =
+        requirement.count !== undefined && Number.isInteger(requirement.count)
+          ? toShortString(requirement.count)
+          : String(requirement.count ?? '')
+      const level =
+        requirement.level !== undefined && Number.isInteger(requirement.level)
+          ? toShortString(requirement.level)
+          : String(requirement.level ?? '')
+      const type = getBuildingType(requirement) ?? ''
+      const text = transformation.todo_string
+        .replaceAll('<count>', count)
+        .replaceAll('<level>', level)
+        .replaceAll('<type>', type)
+        .substring(0, 150)
 
-  const generateTexts = () => {
-    const texts: string[] = [];
-    let characterCount = 0;
+      if (characterCount + text.length + 1 > 150) return
+      characterCount += text.length + 1
+      texts.push(text)
+    })
 
-    allRequirements.forEach((req, index) => {
-      if (req.upgradeLevel === currentLevel) return;
-      if (isRequirementComplete(req, index)) return;
+    return texts.join('\n')
+  }
 
-      const transformation = transformations[req.type];
-      if (!transformation) return;
-      if (!isRequirementUnlocked(req)) return;
+  const generatedText = generateTexts()
 
-      let count = String(req.count ?? "");
-      if (Number.isInteger(req.count)) count = toShortString(req.count!);
+  if (loading) {
+    return <div className="todo-loading">Loading Todo Mega Levels…</div>
+  }
 
-      let level = String(req.level ?? "");
-      if (Number.isInteger(req.level)) level = toShortString(req.level!);
-
-      let type = "";
-      if (req.type === "more_x_of_types" || req.type === "less_x_of_types") {
-        type = getBuildingType(req) || "";
-      }
-
-      let text = transformation.todo_string
-        .replaceAll("<count>", count)
-        .replaceAll("<level>", level)
-        .replaceAll("<type>", type)
-        .substring(0, 150);
-
-      if (characterCount + text.length + 1 > 150) return;
-      characterCount += text.length + 1;
-      texts.push(text);
-    });
-
-    setGeneratedText(texts.join("\n"));
-  };
-
-  const getMissingTransformations = () => {
-    const missing: Record<string, Requirement[]> = {};
-    for (const req of allRequirements) {
-      if (!transformations[req.type]) {
-        if (!missing[req.type]) missing[req.type] = [];
-        missing[req.type].push(req);
-      }
-    }
-    return missing;
-  };
-
-  if (loading) return <div className="todo-loading">Loading...</div>;
-
-  const missingTrans = getMissingTransformations();
-  const missingTypes = Object.keys(missingTrans);
+  if (error) {
+    return (
+      <main className="todo-mega-lvl">
+        <div className="todo-error" role="alert">
+          <p>Unable to load Todo Mega Levels: {error}</p>
+          <button
+            className="add-town"
+            onClick={() => setReload((value) => value + 1)}
+          >
+            Retry
+          </button>
+        </div>
+      </main>
+    )
+  }
 
   return (
-    <div className="todo-mega-lvl">
-      <h1>Todo Mega Levels</h1>
-
+    <main className="todo-mega-lvl">
       <div className="todo-layout">
-        {/* LEFT COLUMN */}
         <div>
-          {/* RESOURCES */}
-          <div className="todo-section">
+          <section className="todo-section">
             <h2>Required Resources</h2>
             <div className="current-level">
-              <label>Current Level:</label>
+              <label htmlFor="current-level-input">Current Level:</label>
               <input
+                id="current-level-input"
                 type="number"
                 min="0"
                 step="1"
                 value={currentLevel}
-                onChange={(e) => setCurrentLevel(Number(e.target.value))}
+                onChange={(event) =>
+                  setCurrentLevel(Number(event.target.value) || 0)
+                }
               />
             </div>
-            {RESOURCES_TO_TRACK.map((resourceType) => (
-              <div key={resourceType} className="resource">
-                <span className="resource-name">{resourceType}</span>
-                <input
-                  type="number"
-                  min="0"
-                  step="1"
-                  value={
-                    resources[resourceType + "|"] ||
-                    defaultValue(resourceType + "|")
-                  }
-                  onChange={(e) => {
-                    setResources({
-                      ...resources,
-                      [resourceType + "|"]:
-                        Number(e.target.value) ||
-                        defaultValue(resourceType + "|"),
-                    });
-                  }}
-                />
-              </div>
-            ))}
-          </div>
-
-          {/* BUILDINGS */}
-          <div className="todo-section">
-            <h2>Buildings</h2>
-            {getBuildingTypes().map((buildingType) => {
-              const unlockLevel =
-                transformationUnlocks["more_x_of_types|" + buildingType];
+            {RESOURCES_TO_TRACK.map((resourceType) => {
+              const inputId = `resource-${resourceType}`
+              const storageKey = `${resourceType}|`
               return (
-                <div key={buildingType} className="building">
-                  <span className="building-name">
-                    {buildingType}
-                    {unlockLevel !== undefined
-                      ? ` (unlock at lvl ${unlockLevel})`
-                      : ""}
-                  </span>
+                <div key={resourceType} className="resource">
+                  <label className="resource-name" htmlFor={inputId}>
+                    {resourceType}
+                  </label>
                   <input
+                    id={inputId}
                     type="number"
                     min="0"
                     step="1"
-                    value={buildings[buildingType] || 0}
-                    onChange={(e) => {
-                      setBuildings({
-                        ...buildings,
-                        [buildingType]: Number(e.target.value) || 0,
-                      });
-                    }}
+                    value={resources[storageKey] ?? 0}
+                    onChange={(event) =>
+                      setResources((previous) => ({
+                        ...previous,
+                        [storageKey]: Number(event.target.value) || 0,
+                      }))
+                    }
                   />
                 </div>
-              );
+              )
             })}
-          </div>
+          </section>
 
-          {/* TOWNS */}
-          <div className="todo-section">
+          <section className="todo-section">
+            <h2>Buildings</h2>
+            {buildingTypes.map((buildingType) => {
+              const unlockLevel =
+                transformationUnlocks[`more_x_of_types|${buildingType}`]
+              const inputId = `building-${buildingType}`
+              return (
+                <div key={buildingType} className="building">
+                  <label className="building-name" htmlFor={inputId}>
+                    {buildingType}
+                    {unlockLevel !== undefined
+                      ? ` (unlock at lvl ${unlockLevel})`
+                      : ''}
+                  </label>
+                  <input
+                    id={inputId}
+                    type="number"
+                    min="0"
+                    step="1"
+                    value={getBuildingAmount(buildingType)}
+                    onChange={(event) =>
+                      setBuildings((previous) => ({
+                        ...previous,
+                        [buildingType]: Number(event.target.value) || 0,
+                      }))
+                    }
+                  />
+                </div>
+              )
+            })}
+            {buildingTypes.length === 0 && (
+              <p>No building requirements for these levels.</p>
+            )}
+          </section>
+
+          <section className="todo-section">
             <h2>Towns</h2>
             <div className="town-header">
               <span>Level</span>
               <span>Quantity</span>
-              <span></span>
+              <span />
             </div>
-            {towns.map((town, idx) => (
-              <div key={idx} className="town-row">
+            {towns.map((town, index) => (
+              <div key={index} className="town-row">
                 <input
                   type="number"
                   min="1"
+                  aria-label={`Town ${index + 1} level`}
                   value={town.level}
-                  onChange={(e) => {
-                    const newTowns = [...towns];
-                    newTowns[idx].level = Number(e.target.value) || 0;
-                    setTowns(newTowns);
-                  }}
+                  onChange={(event) =>
+                    setTowns((previous) =>
+                      previous.map((item, townIndex) =>
+                        townIndex === index
+                          ? { ...item, level: Number(event.target.value) || 0 }
+                          : item
+                      )
+                    )
+                  }
                 />
                 <input
                   type="number"
                   min="0"
+                  aria-label={`Town ${index + 1} quantity`}
                   value={town.count}
-                  onChange={(e) => {
-                    const newTowns = [...towns];
-                    newTowns[idx].count = Number(e.target.value) || 0;
-                    setTowns(newTowns);
-                  }}
+                  onChange={(event) =>
+                    setTowns((previous) =>
+                      previous.map((item, townIndex) =>
+                        townIndex === index
+                          ? { ...item, count: Number(event.target.value) || 0 }
+                          : item
+                      )
+                    )
+                  }
                 />
                 <button
-                  onClick={() => setTowns(towns.filter((_, i) => i !== idx))}
+                  type="button"
+                  onClick={() =>
+                    setTowns((previous) =>
+                      previous.filter((_, i) => i !== index)
+                    )
+                  }
                   className="delete-town"
                   title="Delete this level"
+                  aria-label={`Delete town level ${index + 1}`}
                 >
                   ×
                 </button>
               </div>
             ))}
             <button
-              onClick={() => setTowns([...towns, { level: 1, count: 0 }])}
+              type="button"
+              onClick={() =>
+                setTowns((previous) => [...previous, { level: 1, count: 0 }])
+              }
               className="add-town"
             >
               + Add a level
             </button>
-          </div>
+          </section>
 
-          {/* TASKS */}
-          <div className="todo-section">
+          <section className="todo-section">
             <h2>Tasks</h2>
             <div className="tasks-toggle">
               <label>
                 <input
                   type="checkbox"
                   checked={showCompleted}
-                  onChange={(e) => setShowCompleted(e.target.checked)}
+                  onChange={(event) => setShowCompleted(event.target.checked)}
                 />
                 Show completed tasks
               </label>
             </div>
-            {allRequirements.map((req, idx) => {
-              if (req.upgradeLevel < currentLevel) return null;
+            {allRequirements.map((requirement, index) => {
+              if (
+                requirement.type === ROAD_REQUIREMENT_TYPE &&
+                requirement.upgradeLevel < currentLevel
+              ) {
+                return null
+              }
 
-              const complete = isRequirementComplete(req, idx);
-              if (complete && !showCompleted) return null;
+              const complete = isRequirementComplete(requirement, index)
+              if (complete && !showCompleted) return null
 
-              const taskKey = `${req.upgradeLevel}-${idx}-${req.type}`;
-              const isAuto =
-                req.type === "xtowns_of_level_y" ||
-                req.type === "more_x_of_types" ||
-                req.type === "less_x_of_types" ||
-                RESOURCES_TO_TRACK.includes(req.type);
+              const taskKey = `${requirement.upgradeLevel}-${index}-${requirement.type}`
+              const isAutomatic =
+                requirement.type === 'xtowns_of_level_y' ||
+                requirement.type === 'more_x_of_types' ||
+                requirement.type === 'less_x_of_types' ||
+                RESOURCES_TO_TRACK.includes(requirement.type)
+              const checkboxId = `task-${index}`
+              const buildingType = getBuildingType(requirement)
 
               return (
                 <div
-                  key={idx}
-                  className={`task ${complete ? "completed" : ""}`}
+                  key={taskKey}
+                  className={`task ${complete ? 'completed' : ''}`}
                 >
                   <input
+                    id={checkboxId}
                     type="checkbox"
                     checked={complete}
-                    disabled={isAuto}
-                    onChange={(e) => {
-                      setCompletedTasks({
-                        ...completedTasks,
-                        [taskKey]: e.target.checked,
-                      });
-                    }}
+                    disabled={isAutomatic}
+                    onChange={(event) =>
+                      setCompletedTasks((previous) => ({
+                        ...previous,
+                        [taskKey]: event.target.checked,
+                      }))
+                    }
                   />
-                  <label>
+                  <label htmlFor={checkboxId}>
                     <span>
-                      {req.type} × {req.count}
-                      {(req.type === "more_x_of_types" ||
-                        req.type === "less_x_of_types") &&
-                        getBuildingType(req) &&
-                        ` (${getBuildingType(req)})`}
-                      {req.level !== undefined && ` (lvl${req.level})`}
+                      {requirement.type} × {requirement.count}
+                      {buildingType ? ` (${buildingType})` : ''}
+                      {requirement.level !== undefined
+                        ? ` (lvl${requirement.level})`
+                        : ''}
                     </span>
-                    <span>for city lvl {req.upgradeLevel}</span>
+                    <span>for city lvl {requirement.upgradeLevel}</span>
                   </label>
                 </div>
-              );
+              )
             })}
-          </div>
+            {!showCompleted &&
+              allRequirements.every((requirement, index) =>
+                isRequirementComplete(requirement, index)
+              ) && <p>All tasks are complete.</p>}
+          </section>
         </div>
 
-        {/* RIGHT COLUMN */}
         <div>
-          {/* GENERATED TEXTS */}
-          <div className="todo-section">
+          <section className="todo-section">
             <h2>Texts to copy</h2>
             <textarea
               value={generatedText}
               readOnly
               className="todo-textarea"
               placeholder="Texts to copy will appear here..."
+              aria-label="Generated texts to copy"
             />
-          </div>
+          </section>
 
-          {/* MISSING TRANSFORMATIONS */}
-          <div className="todo-section">
+          <section className="todo-section">
             <h2>Missing Transformations</h2>
-            {missingTypes.length === 0 ? (
+            {Object.keys(missingTransformations).length === 0 ? (
               <div className="no-missing-transformations">
                 All transformations are present.
               </div>
             ) : (
               <div className="missing-transformations-list">
-                {missingTypes.map((type) => (
-                  <div key={type} className="missing-transformation">
-                    <div className="missing-transformation-type">{type}</div>
-                    <div className="missing-transformation-count">
-                      {missingTrans[type].length} occurrence(s)
+                {Object.entries(missingTransformations).map(
+                  ([type, requirements]) => (
+                    <div key={type} className="missing-transformation">
+                      <div className="missing-transformation-type">{type}</div>
+                      <div className="missing-transformation-count">
+                        {requirements.length} occurrence(s)
+                      </div>
+                      <div className="missing-transformation-example">
+                        {requirements
+                          .map((requirement) => {
+                            let text = `count=${requirement.count}`
+                            if (requirement.level !== undefined) {
+                              text += `, level=${requirement.level}`
+                            }
+                            const buildingType = getBuildingType(requirement)
+                            if (buildingType) text += `, type=${buildingType}`
+                            return text
+                          })
+                          .join(' | ')}
+                      </div>
                     </div>
-                    <div className="missing-transformation-example">
-                      {missingTrans[type]
-                        .map((req) => {
-                          let text = `count=${req.count}`;
-                          if (req.level !== undefined)
-                            text += `, level=${req.level}`;
-                          if (
-                            (req.type === "more_x_of_types" ||
-                              req.type === "less_x_of_types") &&
-                            getBuildingType(req)
-                          ) {
-                            text += `, type=${getBuildingType(req)}`;
-                          }
-                          return text;
-                        })
-                        .join(" | ")}
-                    </div>
-                  </div>
-                ))}
+                  )
+                )}
               </div>
             )}
-          </div>
+          </section>
         </div>
       </div>
-    </div>
-  );
-};
+    </main>
+  )
+}
 
-export default TodoMegaLvl;
+export default TodoMegaLvl

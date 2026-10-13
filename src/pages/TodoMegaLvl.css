@@ -2,17 +2,16 @@
   padding: 32px 24px 64px;
 }
 
-.todo-mega-lvl h1 {
-  margin: 0 0 32px;
-  font-size: 28px;
-  color: var(--text-h);
-}
-
 .todo-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 32px;
   align-items: start;
+}
+
+.todo-layout > div,
+.todo-section {
+  min-width: 0;
 }
 
 .todo-section {
@@ -190,13 +189,14 @@
   user-select: none;
 }
 
-.tasks-toggle input[type="checkbox"] {
+.tasks-toggle input[type='checkbox'] {
   cursor: pointer;
 }
 
 .task {
   display: flex;
   align-items: flex-start;
+  min-width: 0;
   gap: 10px;
   padding: 8px 0;
   border-bottom: 1px solid var(--border);
@@ -207,7 +207,7 @@
   border-bottom: none;
 }
 
-.task input[type="checkbox"] {
+.task input[type='checkbox'] {
   margin-top: 2px;
   cursor: pointer;
   flex-shrink: 0;
@@ -217,7 +217,12 @@
   color: var(--text);
   cursor: pointer;
   flex: 1;
+  min-width: 0;
   display: flex;
+}
+
+.task label span:first-of-type {
+  overflow-wrap: anywhere;
 }
 
 .task label span:last-of-type {
@@ -239,7 +244,7 @@
   border-radius: 4px;
   background: var(--bg);
   color: var(--text);
-  font-family: "Courier New", monospace;
+  font-family: 'Courier New', monospace;
   font-size: 13px;
   resize: vertical;
   box-sizing: border-box;
@@ -259,8 +264,9 @@
 
 .missing-transformation {
   padding: 12px;
-  border: 1px solid #ffe0a0;
+  border: 1px solid var(--accent-border);
   border-radius: 4px;
+  background: var(--accent-bg);
 }
 
 .missing-transformation-type {
@@ -269,6 +275,7 @@
   font-size: 13px;
   color: var(--text-h);
   margin-bottom: 6px;
+  overflow-wrap: anywhere;
 }
 
 .missing-transformation-count {
@@ -286,11 +293,23 @@
 
 .no-missing-transformations {
   padding: 12px;
-  background: #f0fdf4;
-  border: 1px solid #86efac;
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
   border-radius: 4px;
-  color: #16a34a;
+  color: var(--text);
   font-size: 14px;
+}
+
+.todo-error {
+  padding: 16px;
+  border: 1px solid #ef5350;
+  border-radius: 8px;
+  background: var(--bg);
+  color: #d32f2f;
+}
+
+.todo-error p {
+  margin-bottom: 12px;
 }
 
 /* LOADING */
@@ -306,5 +325,33 @@
   .todo-layout {
     grid-template-columns: 1fr;
     gap: 24px;
+  }
+}
+
+@media (max-width: 560px) {
+  .todo-mega-lvl {
+    padding-inline: 16px;
+  }
+
+  .todo-section {
+    padding: 16px;
+  }
+
+  .resource,
+  .building {
+    gap: 8px;
+  }
+
+  .resource-name,
+  .building-name {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .resource input,
+  .building input {
+    flex: 0 0 82px;
+    width: 82px;
+    box-sizing: border-box;
   }
 }

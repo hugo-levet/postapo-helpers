@@ -60,8 +60,6 @@ const RESOURCES_TO_TRACK = [
   'use_x_bombs',
 ]
 
-const ROAD_REQUIREMENT_TYPE = 'ypercent_of_road_at_level_x'
-
 const STORAGE_KEYS = {
   resources: 'mega-lvl-resources',
   buildings: 'mega-lvl-buildings',
@@ -425,13 +423,7 @@ const TodoMegaLvl = () => {
     let characterCount = 0
 
     allRequirements.forEach((requirement, index) => {
-      if (
-        requirement.type === ROAD_REQUIREMENT_TYPE &&
-        requirement.upgradeLevel < currentLevel
-      ) {
-        return
-      }
-      if (requirement.upgradeLevel === currentLevel) return
+      if (requirement.upgradeLevel <= currentLevel) return
       if (isRequirementComplete(requirement, index)) return
 
       const transformation = transformations[requirement.type]
@@ -909,12 +901,7 @@ const TodoMegaLvl = () => {
               </label>
             </div>
             {allRequirements.map((requirement, index) => {
-              if (
-                requirement.type === ROAD_REQUIREMENT_TYPE &&
-                requirement.upgradeLevel < currentLevel
-              ) {
-                return null
-              }
+              if (requirement.upgradeLevel <= currentLevel) return null
 
               const complete = isRequirementComplete(requirement, index)
               if (complete && !showCompleted) return null
@@ -959,8 +946,10 @@ const TodoMegaLvl = () => {
               )
             })}
             {!showCompleted &&
-              allRequirements.every((requirement, index) =>
-                isRequirementComplete(requirement, index)
+              allRequirements.every(
+                (requirement, index) =>
+                  requirement.upgradeLevel <= currentLevel ||
+                  isRequirementComplete(requirement, index)
               ) && <p>All tasks are complete.</p>}
           </section>
         </div>
